@@ -12,6 +12,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        potta_one: ['Potta One', 'sans serif']
+      },
     },
   },
   plugins: [],
