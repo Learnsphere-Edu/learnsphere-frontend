@@ -1,11 +1,10 @@
 import Image from 'next/image'
 import ButtonGrp from '../components/ButtonGroup'
-import { CustomBtn } from '../components'
 import NavBtnRouteHandler from '../components/NavButton'
 
 export default function Onboarding2 () {
   return (
-    <div className='onboarding2'>
+    <div className='min-h-screen onboarding2'>
       <div className='designs'>
         <div className='top-0 left-0 z-20 absolute rotate-x-180'>
           <Image

@@ -9,10 +9,12 @@ export default function SignUpBtn () {
         router.push('/auth/signup')
     }
   return (
-    <CustomBtn
+   <div>
+     <CustomBtn
       title='Sign up'
       styles='px-6 py-2 text-white text-[13px] bg-[#5B00FF] rounded-md mt-3 font-poppins z-[200]'
       event={redirectTSignUp}
     />
+   </div>
   )
 }

@@ -28,13 +28,19 @@ body {
 
 @layer components{
   .onboarding{
-    @apply h-screen w-full bg-[#F8F4FF] overflow-hidden
+    @apply h-auto md:h-screen w-full bg-[#F8F4FF] overflow-hidden 
+  }
+  .wrapper{
+    @apply flex flex-col gap-[13rem]
   }
   .onboarding2{
     @apply h-auto w-full bg-[#FFF4E5] overflow-hidden
   }
   header{
     @apply h-[10vh] w-full bg-white py-3 px-[80px] flex items-center justify-between
+  }
+  .header-btn{
+    @apply md:block hidden
   }
 
   /* hero styles */
@@ -50,8 +56,12 @@ body {
   .hidden-wazobia{
     @apply hidden
   }
-
-  
+  .not-visible{
+    @apply hidden
+  }
+  .not-visible h1{
+    @apply hidden
+  }
 
   /* MEDIA QUERIES FOR ONBOARDING STYLES */
   @media screen and (max-width:768px){
@@ -73,6 +83,46 @@ body {
     /* BUTTON GROUP MEDIA QUERY */
     .grp{
       @apply grid-cols-3
+    }
+  }
+
+  /* MEDIA QUERIES FOR DEFAULT LANDING PAGE */
+  @media screen and (max-width:768px){
+    /* .onboarding{
+      @apply h-auto
+    } */
+    header{
+      @apply px-[20px]
+    }
+    .hero{
+      @apply px-[20px]
+    }
+    .hero > div{
+      @apply flex-col-reverse items-center justify-center gap-[1rem]
+    }
+    .hero-text-head{
+      @apply flex flex-col items-center
+    }
+    .hero-text-head h1{
+      @apply hidden
+    }
+    .hero-text-head p{
+      @apply text-center max-w-full
+    }
+    .cartoon-wrapper {
+      @apply flex flex-col items-center justify-center
+    }
+    .next-btn{
+      @apply bottom-20
+    }
+    .absolute-balls > div {
+      @apply w-[200px]
+    }
+    .not-visible{
+      @apply flex flex-col items-center justify-center
+    }
+    .not-visible h1{
+      @apply block
     }
   }
 }

@@ -25,3 +25,4 @@ export default function NavBtnRouteHandler () {
     </div>
   )
 }
+// Compare this snippet from app/components/CustomBtn.tsx:
