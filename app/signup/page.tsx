@@ -1,21 +1,24 @@
 import Image from 'next/image'
+import SignUpForm from '../components/SignUpForm'
 export default function SignUp () {
   return (
     <div className='relative bg-[#5B00FF] w-full h-screen overflow-hidden'>
       {/* content-wrapper */}
-      <div className='flex justify-center items-center h-full'>
+      <div className='flex justify-center items-center gap-20 -mt-[3rem] h-full'>
         {/* signup image */}
-        <div>
+        <div className='flex items-center w-[500px]'>
           <Image
             src='/signupimg.png'
             alt='children'
-            width={300}
-            height={300}
+            width={450}
+            height={450}
             className='object-contain'
           />
         </div>
         {/* signup form details */}
-        <div></div>
+        <div>
+          <SignUpForm />
+        </div>
       </div>
 
       {/* bubble designs */}
