@@ -18,7 +18,7 @@ export default function InfoBox ({
   return (
     <div className='relative flex flex-col gap-0 w-[350px] h-[250px] info-box-wrapper'>
       <div className={`${textColor} ${infoBg} z-20 flex flex-col gap-2 bg-[#5B00FF] rounded-[2rem] w-[350px] h-[180px] font-bold`}>
-        <div className={`${titleColor} z-[25] bg-white mx-auto mt-5 rounded-[0.5rem] w-[80%] h-[50px] info-title text-right pr-4`}>
+        <div className={`${titleColor} flex items-center justify-end z-[25] bg-white mx-auto mt-5 rounded-[0.5rem] w-[80%] h-[50px] info-title text-end pr-4 pl-2`}>
             {infoTitle}
         </div>
         <span className="text-right px-8 text-[13px]">{infoText}</span>
