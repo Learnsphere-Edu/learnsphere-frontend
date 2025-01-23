@@ -125,6 +125,15 @@ body {
       @apply block
     }
   }
+
+
+  /* INFO BOX STYLES */
+  .curve-box{
+    @apply absolute bottom-10 right-0 rounded-tl-[-4rem] rounded-3xl
+  }
+  .curve-box-left{
+    @apply absolute bottom-10 left-0 rounded-tl-[-4rem] rounded-3xl
+  }
 }
 
 @layer utilities{

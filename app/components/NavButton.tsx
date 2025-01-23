@@ -5,7 +5,7 @@ import CustomBtn from './CustomBtn'
 export default function NavBtnRouteHandler () {
     const router  = useRouter()
     const handleNextRoute = () => {
-        router.push('/auth/signup')
+        router.push('/learnsphere-info')
     }
     const handlePrevRoute = () => {
         router.push('/')
