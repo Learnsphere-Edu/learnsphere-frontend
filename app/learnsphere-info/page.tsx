@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import InfoBox from '../components/InfoBox'
-import { InfoDetailsCurveLeft, InfoDetailsCurveRight } from '../constants'
+import { InfoDetailsCurveLeft, InfoDetailsCurveRight } from '../../constants'
 import InfoBox2 from '../components/InfoBox2'
 import { CustomBtn } from '../components'
 import RouteChange from './RouteBtn'
