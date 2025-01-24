@@ -8,7 +8,7 @@ export default function RouteChange () {
     router.push('/onboarding')
   }
   const changeRouteRight = () => {
-    router.push('/auth/signup')
+    router.push('/signup')
   }
   return (
     <div className='flex gap-2'>
@@ -24,4 +24,5 @@ export default function RouteChange () {
       />
     </div>
   )
+  
 }

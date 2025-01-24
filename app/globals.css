@@ -63,6 +63,18 @@ body {
     @apply hidden
   }
 
+
+  /* SIGNUP FORM STYLES */
+  .form-input{
+    @apply rounded-lg w-full py-3 px-5 
+  }
+  .form-input:focus{
+    @apply outline-none
+  }
+  .form-input::placeholder{
+    @apply text-[#000000] opacity-50
+  }
+
   /* MEDIA QUERIES FOR ONBOARDING STYLES */
   @media screen and (max-width:768px){
     .designs > div{
@@ -134,6 +146,9 @@ body {
   .curve-box-left{
     @apply absolute bottom-10 left-0 rounded-tl-[-4rem] rounded-3xl
   }
+
+
+
 }
 
 @layer utilities{
