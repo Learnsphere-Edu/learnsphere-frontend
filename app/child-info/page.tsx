@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import ChildForm from '../components/ChildForm'
 
 export default function SignIn () {
     // create a reusable component flgoin,signup and other pages since they are alike and it's oge and the form that is changing
@@ -18,6 +19,7 @@ export default function SignIn () {
         </div>
         {/* child data form details */}
         <div>
+            <ChildForm />
         </div>
       </div>
 

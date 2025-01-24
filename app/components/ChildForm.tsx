@@ -5,7 +5,7 @@ import CustomBtn from './CustomBtn'
 import Link from 'next/link'
 import { FormEvent, useState } from 'react'
 
-export default function LoginForm () {
+export default function ChildForm () {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [data, setData] = useState<string>('')
@@ -16,9 +16,7 @@ export default function LoginForm () {
     setLoading(true)
     setError('')
 
-    const formData = new FormData(e.currentTarget)
-
-
+    const childFormData = new FormData(e.currentTarget)
   }
 
   return (
@@ -53,11 +51,21 @@ export default function LoginForm () {
           />
         </div>
 
+        {/* image of child studying */}
+        <div className='flex flex-col justify-center items-center'>
+          <Image
+            src='/studying.png'
+            alt='a child studying'
+            width={150}
+            height={150}
+            className='object-contain'
+          />
+        </div>
 
         <CustomBtn
           // notify user if loading or not
           title={`${loading ? 'Saving your data' : 'Proceed'}`}
-          styles='w-full mt-3 py-3 text-white font-semibold bg-[#5B00FF] rounded-lg'
+          styles='w-full mt-3 py-3 text-white font-semibold bg-[#5B00FF] rounded-lg z-[26]'
         />
       </form>
 
