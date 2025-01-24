@@ -6,7 +6,7 @@ export default function SignUp () {
       {/* content-wrapper */}
       <div className='flex justify-center items-center gap-20 -mt-[3rem] h-full'>
         {/* signup image */}
-        <div className='flex items-center w-[500px]'>
+        <div className='md:flex items-center hidden w-[500px]'>
           <Image
             src='/signupimg.png'
             alt='children'

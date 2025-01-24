@@ -8,7 +8,7 @@ export default function SignIn () {
       {/* content-wrapper */}
       <div className='flex justify-center items-center gap-20 -mt-[3rem] h-full'>
         {/* signin image */}
-        <div className='flex items-center w-[500px]'>
+        <div className='md:flex items-center hidden w-[500px]'>
           <Image
             src='/signinimg.png'
             alt='children'

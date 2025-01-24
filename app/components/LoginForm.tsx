@@ -1,15 +1,54 @@
-import Image from "next/image";
-import CustomBtn from "./CustomBtn";
-import Link from "next/link";
+'use client'
 
-export default function LoginForm(){
-    return(
-        <div className='relative w-[500px] h-[470px]'>
-      <form action='' className='bg-white px-16 py-6 w-full h-full'>
+import Image from 'next/image'
+import CustomBtn from './CustomBtn'
+import Link from 'next/link'
+import { FormEvent, useState } from 'react'
+
+export default function LoginForm () {
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
+  const [data, setData] = useState<string>('')
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+
+  const handleLoginAuth = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+
+    const formData = new FormData(e.currentTarget)
+
+    fetch('api/signin', {
+      method: 'POST',
+      body: JSON.stringify(formData)
+    })
+      .then(response => response.json())
+      .then(data => {
+        setLoading(false)
+        if (data.error) {
+          setError(data.error)
+        } else {
+          setData(data.message)
+        }
+      })
+      .catch(error => {
+        setLoading(false)
+        setError('An error occurred. Please try again.')
+        console.log(error)
+      })
+  }
+
+  return (
+    <div className='relative w-[500px] h-[470px]'>
+      <form
+        className='bg-white px-16 py-6 w-full h-full'
+        onSubmit={handleLoginAuth}
+      >
         <h2 className='mb-2 font-bold text-center'>Sign In</h2>
         <div className='relative mb-3'>
           <input
             type='text'
+            name='username'
             placeholder='Username'
             className='bg-[#F8F4FF] form-input'
           />
@@ -17,11 +56,17 @@ export default function LoginForm(){
 
         <div className='relative mb-3'>
           <input
-            type='password'
+            // render password type as text or password depending on state
+            type={`${showPassword ? 'text' : 'password'}`}
+            name='password'
             placeholder='Password'
             className='bg-[#F8F4FF] form-input'
           />
-          <span className='top-3 right-3 absolute'>
+          <span
+            className='top-3 right-3 absolute cursor-pointer'
+            // toggle password-icon state
+            onClick={() => setShowPassword(!showPassword)}
+          >
             <Image
               src='/password-icon.png'
               alt='icon'
@@ -30,14 +75,20 @@ export default function LoginForm(){
               className='object-contain'
             />
           </span>
-          <span className="right-0 -bottom-5 absolute opacity-50 text-[13px] text-black"><Link href='/'>Forgot your password</Link></span>
-
+          <span className='right-0 -bottom-5 absolute opacity-50 text-[13px] text-black'>
+            {/* redirect to reset password */}
+            <Link href='/'>Forgot your password</Link>
+          </span>
         </div>
 
         <CustomBtn
-          title='Sign In'
+          // notify user if loading or not
+          title={`${loading ? 'Signing In' : 'Sign In'}`}
           styles='w-full mt-3 py-3 text-white font-semibold bg-[#5B00FF] rounded-lg'
         />
+
+        {/* display error gracefully when error occurs */}
+        {error && <span className='opacity-75 text-[14px]'>{error}</span>}
 
         <div className='flex flex-col justify-center items-center'>
           <span className='opacity-50 mt-3 text-[#000] text-center'>
@@ -46,7 +97,6 @@ export default function LoginForm(){
               Sign up
             </Link>
           </span>
-
         </div>
       </form>
 
@@ -88,5 +138,5 @@ export default function LoginForm(){
         />
       </div>
     </div>
-    )
+  )
 }

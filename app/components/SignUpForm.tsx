@@ -1,33 +1,83 @@
+'use client'
+
 import Image from 'next/image'
 import CustomBtn from './CustomBtn'
 import Link from 'next/link'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
 export default function SignUpForm () {
+
+  const [error,setError] = useState<string>('')
+  const [loading,setLoading] = useState<boolean>(false)
+  const [data,setData] = useState<string>('')
+  const [showPasword,setShowPassword] = useState<boolean>(false)
+  const [showConfirmPasword,setShowConfirmPassword] = useState<boolean>(false)
+
+  const handleSignUp =(e:FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+  setLoading(true);
+  setError('');
+
+  // automatically retrieves every form field onSubmission
+  const formData = new FormData(e.currentTarget)
+
+
+  fetch('/api/signup', {
+    method: 'POST',
+    body: JSON.stringify(formData),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      setLoading(false);
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setData(data.message);
+      }
+    })
+    .catch((error) => {
+      setLoading(false);
+      setError('An error occurred. Please try again.');
+      console.log(error)
+    });
+  }
+
+
+
+  // console.log(formData)
   return (
     <div className='relative w-[500px] h-[470px]'>
-      <form action='' className='bg-white px-16 py-6 w-full h-full'>
+      <form className='bg-white px-16 py-6 w-full h-full' onSubmit={handleSignUp}>
         <h2 className='mb-2 font-bold text-center'>Sign Up</h2>
         <div className='relative mb-3'>
           <input
             type='text'
+            name='fullName'
             placeholder='Full name'
             className='bg-[#F8F4FF] form-input'
+            
           />
         </div>
         <div className='relative mb-3'>
           <input
             type='email'
+            name='email'
             placeholder='Email'
             className='bg-[#F8F4FF] form-input'
+            
           />
         </div>
         <div className='relative mb-3'>
           <input
-            type='password'
+            type= {`${showPasword ? 'text' : 'password'}`}
+            name='password'
             placeholder='Password'
             className='bg-[#F8F4FF] form-input'
+            
           />
-          <span className='top-3 right-3 absolute'>
+          <span className='top-3 right-3 absolute cursor-pointer'
+           onClick={() => setShowPassword(!showPasword)} 
+          >
             <Image
               src='/password-icon.png'
               alt='icon'
@@ -39,11 +89,15 @@ export default function SignUpForm () {
         </div>
         <div className='relative mb-3'>
           <input
-            type='password'
+            type= {`${showConfirmPasword ? 'text' : 'password'}`}
+            name='confirmPassword'
             placeholder='Confirm Password'
             className='bg-[#F8F4FF] form-input'
+            
           />
-          <span className='top-3 right-3 absolute'>
+          <span className='top-3 right-3 absolute cursor-pointer'
+            onClick={() => setShowConfirmPassword(!showConfirmPasword)}
+          >
             <Image
               src='/password-icon.png'
               alt='icon'
@@ -55,9 +109,13 @@ export default function SignUpForm () {
         </div>
 
         <CustomBtn
-          title='Sign Up'
+          title= {`${loading ? 'Signing Up' : 'Sign Up'}`}
           styles='w-full py-3 text-white font-semibold bg-[#5B00FF] rounded-lg'
+          
         />
+        {error && <span
+          className='opacity-75 text-[14px]'
+        >{error}</span>}
 
         <div className='flex flex-col justify-center items-center'>
           <span className='opacity-50 mt-3 text-[#000] text-center'>
@@ -136,4 +194,3 @@ export default function SignUpForm () {
     </div>
   )
 }
- 
