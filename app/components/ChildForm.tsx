@@ -9,7 +9,6 @@ export default function ChildForm () {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [data, setData] = useState<string>('')
-  const [showPassword, setShowPassword] = useState<boolean>(false)
 
   const handleChildInfoCollection = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
