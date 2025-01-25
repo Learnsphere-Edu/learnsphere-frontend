@@ -4,23 +4,23 @@ import CustomBtn from './CustomBtn'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
 
-export default function ScheduleForm () {
+export default function ChildKnowledgeForm () {
   const options = [
-    '5 - 10 minutes a day',
-    '10 - 20 minutes a day',
-    '20 - 30 minutes a day',
-    '30m - 1 hour a day'
+    'New to language',
+    'Know a little bit',
+    'Can make simple sentences',
+    'Can converse properly'
   ]
-  const [selectedScheduleOption, setSelectedScheduleOption] = useState<string>('')
+  const [selectedKnowledgeOption, setSelectedKnowledgeOption] = useState<string>('')
   const handleClick = (option: string) => [
-    setSelectedScheduleOption(option) //update selected option
+    setSelectedKnowledgeOption(option) //update selected option
   ]
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (selectedScheduleOption) {
-      alert(`You selected: ${selectedScheduleOption}`)
-      // send `selectedScheduleOption` to a server here.
+    if (selectedKnowledgeOption) {
+      alert(`You selected: ${selectedKnowledgeOption}`)
+      // send `selectedKnowledgeOption` to a server here.
 
     //   redirect to next form
     redirect('/child-info')
@@ -35,7 +35,7 @@ export default function ScheduleForm () {
         className='bg-white px-16 py-6 w-full h-full'
         onSubmit={handleSubmit}
       >
-        <h2 className='mb-2 font-bold text-center'>Learning Scheduling</h2>
+        <h2 className='mb-2 font-bold text-center'>Language Knowledge</h2>
         <div className='flex flex-col gap-3 options'>
           {options.map(option => (
             <CustomBtn
@@ -43,7 +43,7 @@ export default function ScheduleForm () {
               title={option}
               type='button'
               styles={`${
-                selectedScheduleOption === option
+                selectedKnowledgeOption === option
                   ? 'bg-[#5B00FF]  text-white'
                   : 'bg-[#F8F4FF]'
               } w-full text-[#09001A] rounded-lg font-poppins font-normal py-3 px-6`}
