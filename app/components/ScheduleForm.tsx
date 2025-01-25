@@ -23,7 +23,7 @@ export default function ScheduleForm () {
       // send `selectedScheduleOption` to a server here.
 
     //   redirect to next form
-    redirect('/schedule')
+    redirect('/knowledge')
 
     } else {
       alert('Please select an option!')

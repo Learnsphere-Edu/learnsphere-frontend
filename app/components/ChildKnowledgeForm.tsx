@@ -23,7 +23,7 @@ export default function ChildKnowledgeForm () {
       // send `selectedKnowledgeOption` to a server here.
 
     //   redirect to next form
-    redirect('/child-info')
+    redirect('/')
 
     } else {
       alert('Please select an option!')
