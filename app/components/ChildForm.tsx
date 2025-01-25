@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import CustomBtn from './CustomBtn'
-import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 
 export default function ChildForm () {
@@ -16,6 +16,8 @@ export default function ChildForm () {
     setError('')
 
     const childFormData = new FormData(e.currentTarget)
+    redirect('/schedule')
+    
   }
 
   return (
