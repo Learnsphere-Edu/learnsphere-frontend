@@ -46,7 +46,7 @@ export default function SignUpForm () {
 
   // console.log(formData)
   return (
-    <div className='relative w-[500px] h-[470px]'>
+    <div className='relative md:w-[500px] h-[600px] md:h-[470px]'>
       <form className='bg-white px-16 py-6 w-full h-full' onSubmit={handleSignUp}>
         <h2 className='mb-2 font-bold text-center'>Sign Up</h2>
         <div className='relative mb-3'>
@@ -136,7 +136,7 @@ export default function SignUpForm () {
 
 
             {/* google auth option btn */}
-            <div className='relative w-full cursor-pointer'>
+            <div className='relative rounded-lg w-full cursor-pointer'>
                 <Image 
                     src='/google icon.png'
                     alt='google icon'
