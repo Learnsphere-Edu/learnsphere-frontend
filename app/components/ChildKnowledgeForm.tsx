@@ -46,7 +46,7 @@ export default function ChildKnowledgeForm () {
                 selectedKnowledgeOption === option
                   ? 'bg-[#5B00FF]  text-white'
                   : 'bg-[#F8F4FF]'
-              } w-full text-[#09001A] rounded-lg font-poppins font-normal py-3 px-6`}
+              } w-full text-[#09001A] rounded-lg font-poppins font-normal text-left py-3 px-6`}
               event={() => handleClick(option)}
             />
           ))}
