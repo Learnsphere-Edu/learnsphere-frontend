@@ -21,7 +21,7 @@ export default function ChildForm () {
   }
 
   return (
-    <div className='relative w-[500px] h-[470px]'>
+    <div className='relative md:w-[500px] h-[600px] md:h-[470px]'>
       <form
         className='bg-white px-16 py-6 w-full h-full'
         onSubmit={handleChildInfoCollection}
