@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import CustomBtn from './CustomBtn'
-import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 
 export default function ChildForm () {
@@ -16,10 +16,12 @@ export default function ChildForm () {
     setError('')
 
     const childFormData = new FormData(e.currentTarget)
+    redirect('/schedule')
+    
   }
 
   return (
-    <div className='relative w-[500px] h-[470px]'>
+    <div className='relative md:w-[500px] h-[600px] md:h-[470px]'>
       <form
         className='bg-white px-16 py-6 w-full h-full'
         onSubmit={handleChildInfoCollection}
