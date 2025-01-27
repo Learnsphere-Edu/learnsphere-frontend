@@ -1,5 +1,5 @@
 'use client'
-
+import React from 'react'
 import Image from 'next/image'
 import CustomBtn from './CustomBtn'
 import Link from 'next/link'
@@ -18,9 +18,15 @@ export default function LoginForm () {
 
     const formData = new FormData(e.currentTarget)
 
+    const requestData: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      requestData[key] = value.toString();
+    });
+
+
     fetch('api/signin', {
       method: 'POST',
-      body: JSON.stringify(formData)
+      body: JSON.stringify(requestData)
     })
       .then(response => response.json())
       .then(data => {

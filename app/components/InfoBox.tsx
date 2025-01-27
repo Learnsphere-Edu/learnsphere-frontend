@@ -21,7 +21,7 @@ export default function InfoBox ({
         <div className={`${titleColor} flex items-center justify-end z-[25] bg-white mx-auto mt-5 rounded-[0.5rem] w-[80%] h-[50px] info-title text-end pr-4 pl-2`}>
             {infoTitle}
         </div>
-        <span className="text-right px-8 text-[13px]">{infoText}</span>
+        <span className={`${textColor} text-right px-8 text-[13px]`}>{infoText}</span>
       </div>
       <div className={`z-15 w-[100px] h-[70px] curve-box ${infoBg}`}></div>
     </div>
