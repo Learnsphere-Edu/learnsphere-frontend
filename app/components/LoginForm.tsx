@@ -45,7 +45,7 @@ export default function LoginForm () {
   }
 
   return (
-    <div className='relative md:w-[500px] h-[600px] md:h-[470px]'>
+    <div className='relative form-padding w-full md:w-[500px] h-[500px] md:h-[470px] loginform'>
       <form
         className='bg-white px-16 py-6 w-full h-full'
         onSubmit={handleLoginAuth}

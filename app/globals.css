@@ -75,6 +75,15 @@ body {
     @apply text-[#000000] opacity-50
   }
 
+  
+  /* INFO BOX STYLES */
+  .curve-box{
+    @apply absolute bottom-10 right-0 rounded-tl-[-4rem] rounded-3xl
+  }
+  .curve-box-left{
+    @apply absolute bottom-10 left-0 rounded-tl-[-4rem] rounded-3xl
+  }
+
   /* MEDIA QUERIES FOR ONBOARDING STYLES */
   @media screen and (max-width:768px){
     .designs > div{
@@ -95,6 +104,9 @@ body {
     /* BUTTON GROUP MEDIA QUERY */
     .grp{
       @apply grid-cols-3
+    }
+    .form-padding{
+      @apply px-6 
     }
   }
 
@@ -139,15 +151,15 @@ body {
   }
 
 
-  /* INFO BOX STYLES */
-  .curve-box{
-    @apply absolute bottom-10 right-0 rounded-tl-[-4rem] rounded-3xl
+  /* MEDIA QUERY FOR ALL FORMS */
+  @media screen and (max-width:450px){
+    .loginform form{
+      @apply px-8
+    }
+    .signupform form{
+      @apply px-8
+    }
   }
-  .curve-box-left{
-    @apply absolute bottom-10 left-0 rounded-tl-[-4rem] rounded-3xl
-  }
-
-
 
 }
 
