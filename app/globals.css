@@ -159,6 +159,9 @@ body {
     .signupform form{
       @apply px-8
     }
+    .px-wazobia{
+      @apply block
+    }
   }
 
 }

@@ -1,23 +1,23 @@
 import Image from 'next/image'
-import LoginForm from '../components/LoginForm'
+ import LoginForm from '../components/LoginForm'
 
 export default function SignIn () {
-    // create a reusable component flgoin,signup and other pages since they are alike and it's oge and the form that is changing
   return (
-    <div className='relative bg-[#5B00FF] w-full h-screen overflow-hidden'>
+    <div className='relative z-30 bg-[#5B00FF] w-full h-screen overflow-hidden'>
       {/* content-wrapper */}
-      <div className='flex justify-center items-center gap-20 -mt-[3rem] h-full'>
-        {/* signin image */}
+      <h1 className='md:block top-20 z-20 absolute hidden opacity-40 font-potta_one text-[#FFEBD5] text-[260px]'>WAZOBIA</h1>
+      <div className='relative z-30 flex justify-center items-center gap-20 -mt-[3rem] h-full'>
+        {/* signup image */}
         <div className='md:flex items-center hidden w-[500px]'>
           <Image
-            src='/signinimg.png'
+            src='/signupimg.png'
             alt='children'
             width={450}
             height={450}
             className='object-contain'
           />
         </div>
-        {/* signin form details */}
+        {/* signup form details */}
         <div>
           <LoginForm />
         </div>
