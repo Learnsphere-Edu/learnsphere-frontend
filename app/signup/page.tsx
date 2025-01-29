@@ -23,6 +23,8 @@ export default function SignUp () {
         </div>
       </div>
 
+      <h1 className='md:hidden opacity-40 -mt-[2rem] font-potta_one text-[#FFEBD5] text-[40px] text-center'>WAZOBIA</h1>
+
       {/* bubble designs */}
       <div className='bubble'>
         <Image

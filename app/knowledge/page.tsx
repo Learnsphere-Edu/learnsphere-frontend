@@ -3,9 +3,10 @@ import ScheduleForm from '../components/ScheduleForm'
 import ChildKnowledgeForm from '../components/ChildKnowledgeForm'
 export default function Schedule () {
   return (
-    <div className='relative bg-[#5B00FF] w-full h-screen overflow-hidden'>
+    <div className='relative z-30 bg-[#5B00FF] w-full min-h-screen overflow-hidden'>
       {/* content-wrapper */}
-      <div className='flex justify-center items-center gap-20 -mt-[3rem] h-full'>
+      <h1 className='md:block top-20 z-20 absolute hidden opacity-40 font-potta_one text-[#FFEBD5] text-[260px]'>WAZOBIA</h1>
+      <div className='relative z-30 flex justify-center items-center gap-20 mt-[2rem] h-full'>
         {/* signup image */}
         <div className='md:flex items-center hidden w-[500px]'>
           <Image
