@@ -4,6 +4,8 @@ import Image from 'next/image'
 import CustomBtn from './CustomBtn'
 import Link from 'next/link'
 import { ChangeEvent, FormEvent, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import Wazobia from './Wazobia'
 
 export default function SignUpForm () {
   const [error, setError] = useState<string>('')
@@ -12,17 +14,25 @@ export default function SignUpForm () {
   const [showPasword, setShowPassword] = useState<boolean>(false)
   const [showConfirmPasword, setShowConfirmPassword] = useState<boolean>(false)
 
+  const router = useRouter()
   const handleSignUp = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
     setError('')
 
     // automatically retrieves every form field onSubmission
-    const formData = new FormData(e.currentTarget)
+    const regData = new FormData(e.currentTarget)
+
+    const requestData: Record<string, string> = {}
+    regData.forEach((value, key) => {
+      requestData[key] = value.toString()
+    })
+    console.log(requestData);
+    
 
     fetch('/api/signup', {
       method: 'POST',
-      body: JSON.stringify(formData)
+      body: JSON.stringify(requestData)
     })
       .then(response => response.json())
       .then(data => {
@@ -30,6 +40,7 @@ export default function SignUpForm () {
         if (data.error) {
           setError(data.error)
         } else {
+          
           setData(data.message)
         }
       })
@@ -130,7 +141,10 @@ export default function SignUpForm () {
           />
 
           {/* google auth option btn */}
-          <div className='relative rounded-lg w-full cursor-pointer'>
+          <div
+            className='relative rounded-lg w-full cursor-pointer'
+            onClick={() => router.push('/signin')}
+          >
             <Image
               src='/google icon.png'
               alt='google icon'
@@ -139,6 +153,7 @@ export default function SignUpForm () {
               className='top-2 left-5 absolute cursor-pointer object-contain'
             />
             <CustomBtn
+              type='button'
               title='Login with Google'
               styles='bg-[#5B00FF] w-full font-semibold py-3 text-white cursor-pointer rounded-lg'
             />

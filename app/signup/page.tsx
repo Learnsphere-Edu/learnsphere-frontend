@@ -1,10 +1,12 @@
 import Image from 'next/image'
 import SignUpForm from '../components/SignUpForm'
+
 export default function SignUp () {
   return (
-    <div className='relative bg-[#5B00FF] w-full h-screen overflow-hidden'>
+    <div className='relative z-30 bg-[#5B00FF] w-full h-screen overflow-hidden'>
       {/* content-wrapper */}
-      <div className='flex justify-center items-center gap-20 -mt-[3rem] h-full'>
+      <h1 className='md:block top-20 z-20 absolute hidden opacity-40 font-potta_one text-[#FFEBD5] text-[260px]'>WAZOBIA</h1>
+      <div className='relative z-30 flex justify-center items-center gap-20 -mt-[3rem] h-full'>
         {/* signup image */}
         <div className='md:flex items-center hidden w-[500px]'>
           <Image
@@ -20,6 +22,8 @@ export default function SignUp () {
           <SignUpForm />
         </div>
       </div>
+
+      <h1 className='md:hidden opacity-40 -mt-[2rem] font-potta_one text-[#FFEBD5] text-[40px] text-center'>WAZOBIA</h1>
 
       {/* bubble designs */}
       <div className='bubble'>

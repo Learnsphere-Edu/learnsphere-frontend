@@ -4,55 +4,34 @@ import Image from 'next/image'
 import CustomBtn from './CustomBtn'
 import Link from 'next/link'
 import { FormEvent, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/hooks/useAuth'
+import Wazobia from './Wazobia'
 
 export default function LoginForm () {
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
-  const [data, setData] = useState<string>('')
+  const { loading, error, login } = useAuth()
   const [showPassword, setShowPassword] = useState<boolean>(false)
-
-  const handleLoginAuth = (e: FormEvent<HTMLFormElement>) => {
+  const router = useRouter()
+  const handleLoginAuth = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setLoading(true)
-    setError('')
+    const loginData = new FormData(e.currentTarget)
+    // get credentials from formData
+    const username = loginData.get('username')?.toString() || ''
+    const password = loginData.get('password')?.toString() || ''
 
-    const formData = new FormData(e.currentTarget)
-
-    const requestData: Record<string, string> = {};
-    formData.forEach((value, key) => {
-      requestData[key] = value.toString();
-    });
-
-
-    fetch('api/signin', {
-      method: 'POST',
-      body: JSON.stringify(requestData)
-    })
-      .then(response => response.json())
-      .then(data => {
-        setLoading(false)
-        if (data.error) {
-          setError(data.error)
-        } else {
-          setData(data.message)
-        }
-      })
-      .catch(error => {
-        setLoading(false)
-        setError('An error occurred. Please try again.')
-        console.log(error)
-      })
+    // send a request to the backend to check if the credentials match / exist
+    await login(username, password)
   }
 
   return (
-    <div className='relative form-padding w-full md:w-[500px] h-[500px] md:h-[470px] loginform'>
+    <div className='relative form-padding md:w-[500px] h-[500px] md:h-[470px] signupform'>
       <form
         className='bg-white px-16 py-6 w-full h-full'
         onSubmit={handleLoginAuth}
       >
         <h2 className='mb-2 font-bold text-center'>Sign In</h2>
         <div className='relative mb-3'>
-          <input
+          <input 
             type='text'
             name='username'
             placeholder='Username'
@@ -104,6 +83,8 @@ export default function LoginForm () {
             </Link>
           </span>
         </div>
+        
+ 
       </form>
 
       {/* Eclipse images for designs */}
