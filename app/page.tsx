@@ -40,7 +40,7 @@ export default function Onboarding () {
               </div>
               <Image
                 alt='cartoonised image'
-                src='/babycloud.png'
+                src='/new_child_img.png'
                 width={800}
                 height={800}
                 className='cartoon object-contain'

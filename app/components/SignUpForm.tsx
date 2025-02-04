@@ -5,7 +5,6 @@ import CustomBtn from './CustomBtn'
 import Link from 'next/link'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Wazobia from './Wazobia'
 
 export default function SignUpForm () {
   const [error, setError] = useState<string>('')
@@ -44,6 +43,8 @@ export default function SignUpForm () {
           setData(data.message)
         }
       })
+      // const token = data.token
+
       .catch(error => {
         setLoading(false)
         setError('An error occurred. Please try again.')

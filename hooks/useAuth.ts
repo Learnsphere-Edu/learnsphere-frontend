@@ -39,6 +39,34 @@ export const useAuth = () => {
     }
   }
 
+  // const register = async (formData: FormData) => {
+  //   setLoading(true)
+  //   setError('')
+
+  //   const requestData: Record<string,string> = {}
+  //   formData.forEach((value,key) => {
+  //     requestData[key] = value.toString()
+  //   })
+  //   try {
+  //     const response = await fetch('/api/signup', {
+  //       method: 'POST',
+  //       body: JSON.stringify(requestData),
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     })
+  //     const data = await response.json()
+  //     if(data.error) {
+  //       setError(data.error)
+  //     }
+      
+  //   } catch (error) {
+  //     setLoading(false)
+  //     setError('An error occurred, please try again')
+  //     console.error(error)
+  //   }
+  // }
+
   return {
     loading,
     error,

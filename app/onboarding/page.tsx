@@ -28,17 +28,17 @@ export default function Onboarding2 () {
         </div>
       </div>
       {/* wazobia */}
-      <div className='-mt-[1rem] overflow-hidden wazobia'>
+      <div className='-mt-[3rem] overflow-hidden wazobia'>
         <h1 className='z-10 -ml-12 font-potta_one text-[#ffebd5] text-[260px]'>
           WAZOBIA
         </h1>
       </div>
 
       {/* showcase */}
-      <div className='relative flex md:flex-row flex-col justify-center items-center gap-[3rem] md:gap-[10rem] mt-[5rem] md:-mt-[4rem] engage'>
+      <div className='relative flex md:flex-row flex-col justify-center items-center gap-[3rem] md:gap-[10rem] mt-[5rem] md:-mt-[5rem] engage'>
         <div className='engage-text'>
           <Image
-            src='/eclipse text.png'
+            src='/new-text_base.png'
             alt='cloud'
             width={300}
             height={300}

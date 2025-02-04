@@ -6,7 +6,7 @@ import CustomBtn from "./CustomBtn";
 export default function SignUpBtn () {
     const router = useRouter()
     const redirectTSignUp = () => {
-        router.push('/auth/signup')
+        router.push('/signup')
     }
   return (
    <div>

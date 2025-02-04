@@ -84,6 +84,16 @@ body {
     @apply absolute bottom-10 left-0 rounded-tl-[-4rem] rounded-3xl
   }
 
+  /* VERIFY STYLES */
+  .code-input{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
   /* MEDIA QUERIES FOR ONBOARDING STYLES */
   @media screen and (max-width:768px){
     .designs > div{

@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { FormEvent, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
-import Wazobia from './Wazobia'
 
 export default function LoginForm () {
   const { loading, error, login } = useAuth()
@@ -62,7 +61,7 @@ export default function LoginForm () {
           </span>
           <span className='right-0 -bottom-5 absolute opacity-50 text-[13px] text-black'>
             {/* redirect to reset password */}
-            <Link href='/'>Forgot your password</Link>
+            <Link href='/forgot-password'>Forgot your password</Link>
           </span>
         </div>
 
