@@ -11,3 +11,4 @@ export default function Wazobia({styles}:Props) {
         </h1>
     )
 }
+

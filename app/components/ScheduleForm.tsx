@@ -3,6 +3,7 @@ import { FormEvent, useState } from 'react'
 import CustomBtn from './CustomBtn'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
+import { showInfoToast } from '@/utils/toastUtils'
 
 export default function ScheduleForm () {
   const options = [
@@ -19,14 +20,15 @@ export default function ScheduleForm () {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (selectedScheduleOption) {
-      alert(`You selected: ${selectedScheduleOption}`)
-      // send `selectedScheduleOption` to a server here.
+      // alert(`You selected: ${selectedScheduleOption}`)
+      showInfoToast(`You selected: ${selectedScheduleOption}`)
 
     //   redirect to next form
     redirect('/knowledge')
 
     } else {
-      alert('Please select an option!')
+      // alert('Please select an option!')
+      showInfoToast('Please select an option!')
     }
   }
   return (

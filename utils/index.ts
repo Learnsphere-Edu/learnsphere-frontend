@@ -6,7 +6,7 @@
 // }
 
 export const isAuthenticated =() => {
-    const token = localStorage.getItem('authToken')
+    const token = localStorage.getItem('accessToken')
     if(token){
         console.log('User is authenticated')
         return true

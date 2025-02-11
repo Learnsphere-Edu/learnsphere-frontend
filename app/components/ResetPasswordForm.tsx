@@ -10,7 +10,7 @@ export default function ResetPasswordForm () {
     const router = useRouter()
 
     const handleResetPassword = () => {
-        router.push('/')
+        router.push('/dashboard')
     }
   return (
     <div className='relative form-padding md:w-[500px] h-[500px] md:h-[470px] signupform'>

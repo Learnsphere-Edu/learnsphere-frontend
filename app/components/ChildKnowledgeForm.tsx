@@ -3,6 +3,7 @@ import { FormEvent, useState } from 'react'
 import CustomBtn from './CustomBtn'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
+import { showInfoToast } from '@/utils/toastUtils'
 
 export default function ChildKnowledgeForm () {
   const options = [
@@ -19,14 +20,17 @@ export default function ChildKnowledgeForm () {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (selectedKnowledgeOption) {
-      alert(`You selected: ${selectedKnowledgeOption}`)
-      // send `selectedKnowledgeOption` to a server here.
+      // alert(`You selected: ${selectedKnowledgeOption}`)
+      showInfoToast(`You selected: ${selectedKnowledgeOption}`)
+
 
     //   redirect to next form
-    redirect('/')
+    showInfoToast('Thanks for using our service')
+    redirect('/dashboard')
 
     } else {
-      alert('Please select an option!')
+      // alert('Please select an option!')
+    showInfoToast('Please select an option!')
     }
   }
   return (

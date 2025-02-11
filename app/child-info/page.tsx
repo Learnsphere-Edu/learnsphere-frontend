@@ -1,8 +1,16 @@
+'use client'
 import Image from 'next/image'
 import ChildForm from '../components/ChildForm'
+import { isAuthenticated } from '@/utils'
+import { useRouter } from 'next/navigation'
 
 export default function ChildInfo () {
-    // create a reusable component flgoin,signup and other pages since they are alike and it's oge and the form that is changing
+  const router = useRouter()
+  // if user is not authenticated , redirect to signin
+  if (!isAuthenticated()) {
+    router.push('/signin')
+  }
+
   return (
     <div className='relative z-30 bg-[#5B00FF] w-full min-h-screen overflow-hidden'>
       {/* content-wrapper */}

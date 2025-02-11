@@ -40,3 +40,34 @@ export const InfoDetailsCurveLeft:Info[] = [
         titleColor: 'text-[#5B00FF]'
     }
 ]
+
+export const DashboardStatistics = [
+    {
+        id:1,
+        image: '/calendar.png',
+        icon: '/fire (1).png',
+        title: '2 Day Streak',
+        text: 'Consistency is key'
+    },
+    {
+        id:2,
+        image: '/multi-level chart.png',
+        icon: '/number two.png',
+        title: 'Level 2',
+        text: 'Current level'
+    },
+    {
+        id:3,
+        image: '/heart with pulse.png',
+        icon: '/heart.png',
+        title: 'Full hearts',
+        text: 'Recovery chances'
+    },
+    {
+        id:4,
+        image: '/Goal achievement with golden trophy.png',
+        icon: '/blue gradient star.png',
+        title: '225 Diamonds',
+        text: 'Quest diamonds'
+    }
+]

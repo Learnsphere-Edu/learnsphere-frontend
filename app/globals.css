@@ -68,6 +68,12 @@ body {
   .form-input{
     @apply rounded-lg w-full py-3 px-5 
   }
+  .signupform-input{
+    @apply rounded-lg w-full py-1.5 px-5
+  }
+  .signupform-input:focus{
+    @apply outline-none
+  }
   .form-input:focus{
     @apply outline-none
   }
@@ -93,6 +99,9 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
   }
+
+  /* DASHBOARD STYLES */
+
 
   /* MEDIA QUERIES FOR ONBOARDING STYLES */
   @media screen and (max-width:768px){

@@ -4,22 +4,20 @@ import Image from 'next/image'
 import CustomBtn from './CustomBtn'
 import Link from 'next/link'
 import { FormEvent, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 
 export default function LoginForm () {
   const { loading, error, login } = useAuth()
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const router = useRouter()
   const handleLoginAuth = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const loginData = new FormData(e.currentTarget)
     // get credentials from formData
-    const username = loginData.get('username')?.toString() || ''
+    const email = loginData.get('email')?.toString() || ''
     const password = loginData.get('password')?.toString() || ''
 
     // send a request to the backend to check if the credentials match / exist
-    await login(username, password)
+    await login(email, password)
   }
 
   return (
@@ -30,10 +28,10 @@ export default function LoginForm () {
       >
         <h2 className='mb-2 font-bold text-center'>Sign In</h2>
         <div className='relative mb-3'>
-          <input 
+          <input
             type='text'
-            name='username'
-            placeholder='Username'
+            name='email'
+            placeholder='Email'
             className='bg-[#F8F4FF] form-input'
           />
         </div>
@@ -82,8 +80,6 @@ export default function LoginForm () {
             </Link>
           </span>
         </div>
-        
- 
       </form>
 
       {/* Eclipse images for designs */}

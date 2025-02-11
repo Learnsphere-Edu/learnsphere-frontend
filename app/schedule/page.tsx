@@ -1,27 +1,9 @@
 'use client'
 import Image from 'next/image'
 import ScheduleForm from '../components/ScheduleForm'
-import { isAuthenticated } from '@/utils'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+
 
 export default function Schedule () {
-  // const [loading,setLoading] = useState<boolean>(true)
-  // const router = useRouter()
-
-  // useEffect(() => {
-  //   console.log('Checking authentication');
-  //   if (!isAuthenticated()) {
-  //     console.log('Not authenticated, redirecting to /signin');
-  //     router.push('/signin');
-  //   }
-  //   setLoading(false)
-  // }, [router]);
-
-  // if (loading) {
-  //   return <><h2>Loading...</h2></>
-  // }
-
   return (
     <div className='relative z-30 bg-[#5B00FF] w-full min-h-screen overflow-hidden'>
       {/* content-wrapper */}

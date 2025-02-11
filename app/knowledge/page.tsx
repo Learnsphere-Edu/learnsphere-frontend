@@ -1,7 +1,16 @@
+'use client'
 import Image from 'next/image'
-import ScheduleForm from '../components/ScheduleForm'
 import ChildKnowledgeForm from '../components/ChildKnowledgeForm'
+import { isAuthenticated } from '@/utils'
+import { useRouter } from 'next/navigation'
+
 export default function Schedule () {
+    const router = useRouter()
+    // if user is not authenticated , redirect to signin
+    if (!isAuthenticated()) {
+      router.push('/signin')
+    }
+  
   return (
     <div className='relative z-30 bg-[#5B00FF] w-full min-h-screen overflow-hidden'>
       {/* content-wrapper */}
