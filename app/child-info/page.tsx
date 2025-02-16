@@ -27,7 +27,7 @@ export default function ChildInfo () {
           />
         </div>
         {/* child data form details */}
-        <div>
+        <div className='h-[80vh]'>
             <ChildForm />
         </div>
       </div>

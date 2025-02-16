@@ -1,8 +1,9 @@
 import Image from "next/image"
 import ResetPasswordForm from "../components/ResetPasswordForm"
+import Wazobia from "../components/Wazobia"
 export default function ResetPassword() {
     return(
-         <div className='relative z-30 bg-[#5B00FF] w-full min-h-screen overflow-hidden'>
+         <div className='relative z-30 bg-white md:bg-[#5B00FF] w-full min-h-screen overflow-hidden'>
               {/* content-wrapper */}
               <h1 className='md:block top-20 z-20 absolute hidden opacity-40 font-potta_one text-[#FFEBD5] text-[260px]'>WAZOBIA</h1>
               <div className='relative z-30 flex justify-center items-center gap-20 mt-[2rem] h-full'>
@@ -17,7 +18,7 @@ export default function ResetPassword() {
                   />
                 </div>
                 {/* reset form details */}
-                <div>
+                <div className="z-[10]">
                   <ResetPasswordForm />
                 </div>
               </div>
@@ -30,7 +31,12 @@ export default function ResetPassword() {
                   alt='background image'
                   width={200}
                   height={200}
-                  className='bottom-[-1rem] z-20 absolute w-full overflow-hidden object-cover'
+                  className='md:block bottom-[-1rem] z-20 absolute hidden w-full overflow-hidden object-cover'
+                />
+              </div>
+              <div className="flex justify-center items-center md:hidden">
+                <Wazobia 
+                  styles="text-[#FC9E48] text-[60px] font-bold font-potta_one absolute bottom-0 opacity-10"
                 />
               </div>
             </div>

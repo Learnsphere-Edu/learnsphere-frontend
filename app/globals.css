@@ -66,7 +66,7 @@ body {
 
   /* SIGNUP FORM STYLES */
   .form-input{
-    @apply rounded-lg w-full py-3 px-5 
+    @apply rounded-lg w-full md:py-3 md:px-5 py-4 px-4
   }
   .signupform-input{
     @apply rounded-lg w-full py-1.5 px-5
@@ -87,7 +87,7 @@ body {
     @apply absolute bottom-10 right-0 rounded-tl-[-4rem] rounded-3xl
   }
   .curve-box-left{
-    @apply absolute bottom-10 left-0 rounded-tl-[-4rem] rounded-3xl
+    @apply absolute bottom-10 left-0 rounded-tl-[-4rem] rounded-3xl 
   }
 
   /* VERIFY STYLES */

@@ -72,7 +72,7 @@ export default function ForgotPwordForm () {
     }
   }
   return (
-    <div className='relative form-padding md:w-[500px] h-[500px] md:h-[470px] signupform'>
+    <div className='relative md:form-padding md:w-[500px] h-[500px] md:h-[470px] signupform'>
       <form
         className='bg-white px-16 py-6 w-full h-full'
         onSubmit={handleSendEmail}
@@ -107,7 +107,7 @@ export default function ForgotPwordForm () {
       </form>
 
       {/* Eclipse images for designs */}
-      <div className='-top-6 -left-6 absolute'>
+      <div className='md:block -top-6 -left-6 absolute hidden'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -116,7 +116,7 @@ export default function ForgotPwordForm () {
           className='object-contain'
         />
       </div>
-      <div className='-top-6 -right-6 absolute'>
+      <div className='md:block -top-6 -right-6 absolute hidden'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -125,7 +125,7 @@ export default function ForgotPwordForm () {
           className='object-contain'
         />
       </div>
-      <div className='-bottom-12 -left-6 absolute'>
+      <div className='md:block -bottom-12 -left-6 absolute hidden'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -134,7 +134,7 @@ export default function ForgotPwordForm () {
           className='object-contain'
         />
       </div>
-      <div className='-right-6 -bottom-12 absolute'>
+      <div className='md:block -right-6 -bottom-12 absolute hidden'>
         <Image
           src='/eclipse.png'
           alt='circle'

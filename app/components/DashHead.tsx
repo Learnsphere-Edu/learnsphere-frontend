@@ -1,5 +1,21 @@
+'use client'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 export default function DashboardHeader () {
+  const profileName = localStorage.getItem('currentUser')
+  const [loading,setLoading] = useState<boolean>(false)
+  
+  const displayProfileName = () => {
+    if(profileName) {
+      setLoading(false)
+    }
+    else{
+      setLoading(true)
+    }
+  }
+  useEffect(()=> {
+    displayProfileName()
+  },[profileName])
   return (
     <header className='flex items-center bg-[#5B00FF] w-full h-[10vh]'>
       <div className='flex items-center gap-4 avatar_name_notfn'>
@@ -16,7 +32,7 @@ export default function DashboardHeader () {
         </div>
 
         <div className='flex items-center gap-8 name_notfn'>
-            <h2 className='font-bold text-white'>Hello, <span>Ebuka</span></h2>
+            <h2 className='font-bold text-white'>Hello, <span>{!loading ?profileName : 'User'}</span></h2>
 
             <div className='flex items-center gap-2'>
                 <Image 

@@ -5,9 +5,6 @@ import CustomBtn from './CustomBtn'
 import VerifyCode from './VerifyCode'
 import { useRouter } from 'next/navigation'
 
-interface VerifyFormProps {
-    email: string
-}
 
 export default function VerifyForm () {
     const router = useRouter()
@@ -24,9 +21,9 @@ export default function VerifyForm () {
         <h2 className='mb-2 font-bold text-center'>Verify Password</h2>
         {/* guide */}
         <h2 className='font-normal'>Please check your Email</h2>
-        <p className='opacity-50 text-black'>We have sent a verification code to your Email</p>
+        <p className='opacity-50 mt-4 md:mt-0 text-black'>We have sent a verification code to <span className='opacity-100 font-semibold'>omotoshopeter737@gmail.com</span></p>
         {/* receive verification code from user */}
-        <div className='mt-8'>
+        <div className='mt-12'>
             <VerifyCode />
         </div>
         <CustomBtn
@@ -40,7 +37,7 @@ export default function VerifyForm () {
 
 
       {/* Eclipse images for designs */}
-      <div className='-top-6 -left-6 absolute'>
+      <div className='md:block -top-6 -left-6 absolute hidden'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -49,7 +46,7 @@ export default function VerifyForm () {
           className='object-contain'
         />
       </div>
-      <div className='-top-6 -right-6 absolute'>
+      <div className='md:block -top-6 -right-6 absolute hidden'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -58,7 +55,7 @@ export default function VerifyForm () {
           className='object-contain'
         />
       </div>
-      <div className='-bottom-12 -left-6 absolute'>
+      <div className='md:block -bottom-12 -left-6 absolute hidden'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -67,7 +64,7 @@ export default function VerifyForm () {
           className='object-contain'
         />
       </div>
-      <div className='-right-6 -bottom-12 absolute'>
+      <div className='md:block -right-6 -bottom-12 absolute hidden'>
         <Image
           src='/eclipse.png'
           alt='circle'

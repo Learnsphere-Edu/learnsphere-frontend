@@ -17,10 +17,7 @@ export default function SignUpForm () {
     email: '',
     username: '',
     password: '',
-    password2: '',
-    // date_of_birth: '',
-    // country: '',
-    // native_language: ''
+    password2: ''
   })
   const router = useRouter()
 
@@ -67,16 +64,6 @@ export default function SignUpForm () {
       return
     }
 
-    // // confirm date is in the right format
-    // const formattedData = {
-    //   ...formData,
-    //   date_of_birth: formData.date_of_birth
-    //     ? new Date(formData.date_of_birth).toISOString().split('T')[0]
-    //     : '' // Ensure valid format
-    // }
-
-    // send request body to backend safely
-    // console.log('Checking Data before sending', formattedData)
     try {
       const response = await fetch('/api/register/', {
         method: 'POST',
@@ -123,75 +110,45 @@ export default function SignUpForm () {
   }
 
   return (
-    <div className='relative form-padding md:w-[500px] h-[500px] md:h-[470px] signupform'>
+    <div className='relative form-padding md:w-[500px] h-[100%] md:h-[470px] signupform'>
       <form
         className='bg-white px-16 py-6 w-full h-full'
         onSubmit={handleSignUp}
       >
         <h2 className='mb-2 font-bold text-center'>Sign Up</h2>
-        <div className='relative mb-3'>
+        <div className='relative mt-4 mb-6 md:mb-3'>
           <input
             type='text'
             name='username'
             placeholder='Full name'
-            className='bg-[#F8F4FF] signupform-input'
+            className='bg-[#F8F4FF] form-input'
             value={formData.username}
             onChange={handleChange}
+            autoComplete='username'
             required
           />
         </div>
-        <div className='relative mb-3'>
+        <div className='relative mb-6 md:mb-3'>
           <input
             type='email'
             name='email'
             placeholder='Email'
-            className='bg-[#F8F4FF] signupform-input'
+            className='bg-[#F8F4FF] form-input'
             value={formData.email}
             onChange={handleChange}
+            autoComplete='email'
             required
           />
         </div>
-        {/* <div className='relative mb-3'>
-          <input
-            type='date'
-            name='date_of_birth'
-            placeholder='yyyy-mm-dd'
-            className='bg-[#F8F4FF] signupform-input'
-            value={formData.date_of_birth ?? ''}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='relative mb-3'>
-          <input
-            type='text'
-            name='native_language'
-            placeholder='Native Language'
-            className='bg-[#F8F4FF] signupform-input'
-            value={formData.native_language}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='relative mb-3'>
-          <input
-            type='text'
-            name='country'
-            placeholder='Country'
-            className='bg-[#F8F4FF] signupform-input'
-            value={formData.country}
-            onChange={handleChange}
-            required
-          />
-        </div> */}
-        <div className='relative mb-3'>
+        <div className='relative mb-6 md:mb-3'>
           <input
             type={showPassword ? 'text' : 'password'}
             name='password'
             placeholder='Password'
-            className='bg-[#F8F4FF] signupform-input'
+            className='bg-[#F8F4FF] form-input'
             value={formData.password}
             onChange={handleChange}
+            autoComplete='new-password'
             required
           />
           <span
@@ -207,14 +164,15 @@ export default function SignUpForm () {
             />
           </span>
         </div>
-        <div className='relative mb-3'>
+        <div className='relative mb-6 md:mb-3'>
           <input
             type={showPassword ? 'text' : 'password'}
             name='password2'
             placeholder='Confirm Password'
-            className='bg-[#F8F4FF] signupform-input'
+            className='bg-[#F8F4FF] form-input'
             value={formData.password2}
             onChange={handleChange}
+            autoComplete='new-password'
             required
           />
           <span
@@ -232,7 +190,7 @@ export default function SignUpForm () {
         </div>
         <CustomBtn
           title={loading ? 'Signing Up' : 'Sign Up'}
-          styles='w-full py-3 text-white font-semibold bg-[#5B00FF] rounded-lg'
+          styles='w-full py-4 text-white font-semibold bg-[#5B00FF] rounded-lg'
           type='submit'
           disabled={loading}
         />
@@ -267,12 +225,12 @@ export default function SignUpForm () {
               alt='Google icon'
               width={30}
               height={30}
-              className='top-2 left-5 absolute cursor-pointer object-contain'
+              className='top-3 left-5 absolute cursor-pointer object-contain'
             />
             <CustomBtn
               type='button'
               title='Login with Google'
-              styles='bg-[#5B00FF] w-full font-semibold py-3 text-white cursor-pointer rounded-lg'
+              styles='bg-[#5B00FF] w-full font-semibold py-4 text-white cursor-pointer rounded-lg'
             />
           </div>
         </div>

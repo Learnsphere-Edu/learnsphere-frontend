@@ -36,18 +36,29 @@ const ResendVerificationCode = () => {
     if (!isCooldown) {
       setIsCooldown(true);
       // Your function to send the verification code goes here
-      router.push('/reset')
       console.log("Verification code sent!");
       
     }
   };
+// https://8fnt5dgr-3000.uks1.devtunnels.ms/
 
   return (
     <div>
-      <button onClick={handleResendCode} disabled={isCooldown} className={`text-black mt-3 ${isCooldown ? "opacity-50" : "opacity-100"}`}>
-        {isCooldown ? `Send Code again ${timeLeft}s` : "Send Code"}
-      </button>
-    </div>
+    <button 
+      onClick={handleResendCode} 
+      disabled={isCooldown} 
+      className={`text-black mt-3 ${isCooldown ? "opacity-75" : "opacity-100"}`}
+    >
+      {isCooldown ? (
+        <>
+          Send Code again <span className="text-[#5B00FF]">00:{timeLeft}s</span>
+        </>
+      ) : (
+        "Send Code"
+      )}
+    </button>
+  </div>
+  
   );
 };
 

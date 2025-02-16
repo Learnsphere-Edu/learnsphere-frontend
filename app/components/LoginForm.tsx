@@ -21,28 +21,31 @@ export default function LoginForm () {
   }
 
   return (
-    <div className='relative form-padding md:w-[500px] h-[500px] md:h-[470px] signupform'>
+    <div className='relative form-padding md:w-[500px] h-[100%] md:h-[470px] signupform'>
       <form
         className='bg-white px-16 py-6 w-full h-full'
         onSubmit={handleLoginAuth}
       >
-        <h2 className='mb-2 font-bold text-center'>Sign In</h2>
-        <div className='relative mb-3'>
+        <h2 className='mt-10 mb-2 font-bold text-center'>Sign In</h2>
+        <h3 className='mt-8 mb-4 text-sm'>Please enter your details</h3>
+        <div className='relative mb-6 md:mb-3'>
           <input
             type='text'
             name='email'
             placeholder='Email'
             className='bg-[#F8F4FF] form-input'
+            autoComplete='email'
           />
         </div>
 
-        <div className='relative mb-3'>
+        <div className='relative mb-6 md:mb-3'>
           <input
             // render password type as text or password depending on state
             type={`${showPassword ? 'text' : 'password'}`}
             name='password'
             placeholder='Password'
             className='bg-[#F8F4FF] form-input'
+            autoComplete='current-password'
           />
           <span
             className='top-3 right-3 absolute cursor-pointer'
@@ -66,7 +69,7 @@ export default function LoginForm () {
         <CustomBtn
           // notify user if loading or not
           title={`${loading ? 'Signing In' : 'Sign In'}`}
-          styles='w-full mt-3 py-3 text-white font-semibold bg-[#5B00FF] rounded-lg'
+          styles='w-full mt-3 py-4 text-white font-semibold bg-[#5B00FF] rounded-lg'
         />
 
         {/* display error gracefully when error occurs */}

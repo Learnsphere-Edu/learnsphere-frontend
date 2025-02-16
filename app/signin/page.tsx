@@ -18,7 +18,7 @@ export default function SignIn () {
           />
         </div>
         {/* signup form details */}
-        <div>
+        <div className='h-[80vh]'>
           <LoginForm />
         </div>
       </div>

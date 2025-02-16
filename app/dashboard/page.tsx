@@ -2,6 +2,8 @@ import { DashboardStatistics } from '@/constants'
 import DashboardHeader from '../components/DashHead'
 import StatisticsCard from '../components/StatisticsCard'
 import Image from 'next/image'
+import QuestProgress from '../components/QuestProgress'
+import AuthContext from '../contexts/AuthContext'
 
 export default function Dashboard () {
   return (
@@ -20,6 +22,7 @@ export default function Dashboard () {
           className='flex justify-evenly items-center gap-4 bg-[#5b00ff] bg-contain bg-bottom rounded-t-xl h-[330px]'
           style={{ backgroundImage: 'url(/barchartbg.png)' }}
         >
+          {/* mapping through properties of each element */}
           {DashboardStatistics.map(statistics => (
             <StatisticsCard
               icon={statistics.icon}
@@ -30,7 +33,7 @@ export default function Dashboard () {
             />
           ))}
         </div>
-      </section>         
+      </section>
 
       {/* Quest */}
       <section className='relative mb-[1rem] px-[5rem]'>
@@ -154,12 +157,28 @@ export default function Dashboard () {
               Complete 10 Quests
             </h2>
 
-            <div className='bg-white rounded-lg h-[100px]'>
+            <div className='relative flex flex-col justify-end items-center bg-white pb-1.5 rounded-lg h-[100px] fl'>
+              {/* this will be a dynamic number , in a new component */}
+              <span className='absolute text-[#fff] Z-[20]'>3/10</span>
               {/* progress */}
+              <div className='flex justify-center items-center w-full'>
+                <div className='w-[70%]'>
+                  <QuestProgress />
+                </div>
+                <Image
+                  src='/crown.png'
+                  alt='crown'
+                  width={30}
+                  height={30}
+                  className='object-contain'
+                />
+              </div>
             </div>
           </div>
           <div className='flex flex-col gap-3 message'>
-            <span className='font-bold text-[#360099] text-[18px]'>you have achieved 225 Diamonds so far</span>
+            <span className='font-bold text-[#360099] text-[18px]'>
+              you have achieved 225 Diamonds so far
+            </span>
             <span className='text-[#7C33FF] text-[20px]'>
               Don&apos;t stop now, keep going and uncover more treasures
             </span>

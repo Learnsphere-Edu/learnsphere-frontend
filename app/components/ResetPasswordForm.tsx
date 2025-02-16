@@ -13,7 +13,7 @@ export default function ResetPasswordForm () {
         router.push('/dashboard')
     }
   return (
-    <div className='relative form-padding md:w-[500px] h-[500px] md:h-[470px] signupform'>
+    <div className='relative md:form-padding md:w-[500px] h-[500px] md:h-[470px] signupform'>
       <form
         className='bg-white px-16 py-6 w-full h-full'
         // onSubmit={handleLoginAuth}
@@ -32,6 +32,8 @@ export default function ResetPasswordForm () {
             name='password'
             placeholder='Password'
             className='bg-[#F8F4FF] form-input'
+            autoComplete='new-password'
+
           />
           <span
             className='top-3 right-3 absolute cursor-pointer'
@@ -52,6 +54,7 @@ export default function ResetPasswordForm () {
             name='confirmPassword'
             placeholder='Confirm Password'
             className='bg-[#F8F4FF] form-input'
+            autoComplete='new-password'
           />
           <span
             className='top-3 right-3 absolute cursor-pointer'
@@ -75,8 +78,10 @@ export default function ResetPasswordForm () {
         />
       </form>
 
+
+
       {/* Eclipse images for designs */}
-      <div className='-top-6 -left-6 absolute'>
+      <div className='md:block -top-6 -left-6 absolute hidden'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -85,7 +90,7 @@ export default function ResetPasswordForm () {
           className='object-contain'
         />
       </div>
-      <div className='-top-6 -right-6 absolute'>
+      <div className='md:block -top-6 -right-6 absolute hidden'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -94,7 +99,7 @@ export default function ResetPasswordForm () {
           className='object-contain'
         />
       </div>
-      <div className='-bottom-12 -left-6 absolute'>
+      <div className='md:block -bottom-12 -left-6 absolute hidden'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -103,7 +108,7 @@ export default function ResetPasswordForm () {
           className='object-contain'
         />
       </div>
-      <div className='-right-6 -bottom-12 absolute'>
+      <div className='md:block -right-6 -bottom-12 absolute hidden'>
         <Image
           src='/eclipse.png'
           alt='circle'

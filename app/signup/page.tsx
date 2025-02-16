@@ -20,7 +20,7 @@ export default function SignUp () {
           />
         </div>
         {/* signup form details */}
-        <div>
+        <div className='w-full h-[80vh]'>
           <SignUpForm />
         </div>
       </div>
