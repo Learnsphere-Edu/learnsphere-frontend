@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-export default function ParentHeader() {
+export default function ChildHeader() {
        return(
               <header className="flex bg-white h-[80px] parentHeader">
                      <Image 

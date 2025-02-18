@@ -100,8 +100,44 @@ body {
     border-radius: 5px;
   }
 
-  /* DASHBOARD STYLES */
+  /*PARENT DASHBOARD STYLES */
+  .parentHeader{
+    @apply px-[40px]
+  }
+  .parentSideNavWrapper{
+    @apply flex flex-col gap-3
+  }
+  .childSideNavWrapper{
+    @apply flex flex-col gap-5
+  }
+  .parentSideNavBox{
+    @apply flex gap-6 px-[2.7rem] py-2 h-[100px]
 
+  }
+  .childSideNavBox{
+    @apply flex gap-6 px-[2.7rem] py-3 h-[40px] items-center
+  }
+  .parentSideNavBox div > h2{
+    @apply font-[500]
+  }
+  .childSideNavBox div > h2{
+    @apply font-[500]
+  }
+  .parentSideNavBox div > p{
+    @apply text-[14px] text-[#8E8E93]
+  }
+  .childSideNavBox div > p{
+    @apply text-[14px] text-[#8E8E93]
+  }
+  .parentSideNavBoxActive{
+    @apply bg-[#F8F4FF] border-r-2 border-[#5B00FF]
+  }
+  .childSideNavBoxActive{
+    @apply bg-[#F8F4FF] border-r-2 border-[#5B00FF]
+  }
+  .iconWrapper{
+    @apply w-[60px] h-[60px] border-red-600 border
+  }
 
   /* MEDIA QUERIES FOR ONBOARDING STYLES */
   @media screen and (max-width:768px){
