@@ -2,7 +2,7 @@ import Image from 'next/image'
 import CustomBtn from './CustomBtn'
 export default function ProfileSection () {
   return (
-    <div className='flex items-center gap-4'>
+    <div className='flex md:flex-row flex-col items-center gap-4'>
       <div>
         {/* this image will have a defualt image at first, but it will be dynamic, specific to what a user chooses. the user will be allowed to select from their computer */}
         <Image
@@ -18,13 +18,13 @@ export default function ProfileSection () {
         <CustomBtn
           title='Edit Account'
           disabled={false}
-          styles='bg-[#5B00FF] text-white rounded-lg px-[30px] py-3 font-[500]'
+          styles='bg-[#5B00FF] text-white rounded-lg px-[20px] md:px-[30px] py-3 font-[500]'
           type='button'
         />
         <CustomBtn
           title='Delete Account'
           disabled={false}
-          styles='bg-[#ffffff] text-black rounded-lg px-[30px] py-3 font-[500]'
+          styles='bg-[#ffffff] text-black rounded-lg px-[20px] md:px-[30px]  py-3 font-[500] border border-[#5B00FF] md:border-0'
           type='button'
         />
       </div>

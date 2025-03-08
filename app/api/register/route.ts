@@ -21,7 +21,7 @@ export async function POST(request: Request) {
       } catch (parseError) {
         console.error('Error parsing JSON:', parseError);
       }
-    }
+    } 
 
     // Return the response using NextResponse.json with the correct status code
     return NextResponse.json(data, { status: apiResponse.status });

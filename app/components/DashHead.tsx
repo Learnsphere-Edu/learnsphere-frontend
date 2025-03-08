@@ -42,7 +42,7 @@ export default function DashboardHeader () {
                     height={30}
                     className='object-contain'
                 />
-                <span className='md:block hidden font-bold text-[#F8F4FF]'>"A new quest is waiting"</span>
+                <span className='hidden md:block font-bold text-[#F8F4FF]'>"A new quest is waiting"</span>
             </div>
         </div>
       </div>
@@ -57,7 +57,7 @@ export default function DashboardHeader () {
                 className='object-contain'
             />
             {/* dynamic number */}
-            <span className='font-normal text-lg text-white'>2</span>
+            <span className='font-normal text-white text-lg'>2</span>
         </div>
         <div className='flex items-center gap-3 life-count'>
         <Image 
@@ -68,7 +68,7 @@ export default function DashboardHeader () {
                 className='object-contain'
             />
             {/* dynamic number */}
-            <span className='font-normal text-lg text-white'>5</span>
+            <span className='font-normal text-white text-lg'>5</span>
         </div>
         <div className='flex items-center gap-3 star-streak'>
         <Image 
@@ -79,7 +79,7 @@ export default function DashboardHeader () {
                 className='object-contain'
             />
             {/* dynamic number */}
-            <span className='font-normal text-lg text-white'>225</span>
+            <span className='font-normal text-white text-lg'>225</span>
         </div>
       </div>
     </header>

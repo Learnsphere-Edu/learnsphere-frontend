@@ -99,7 +99,6 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
   }
-
   /*PARENT DASHBOARD STYLES */
   .parentHeader{
     @apply px-[40px]
@@ -111,17 +110,17 @@ body {
     @apply flex flex-col gap-5
   }
   .parentSideNavBox{
-    @apply flex gap-6 px-[2.7rem] py-2 h-[100px]
+    @apply flex gap-6 px-[2.7rem] py-2 h-[100px] hover:bg-[#F8F4FF]
 
   }
   .childSideNavBox{
-    @apply flex gap-6 px-[2.7rem] py-3 h-[40px] items-center
+    @apply flex gap-6 px-[2.7rem] py-3 h-[40px] items-center hover:bg-[#F8F4FF]
   }
   .parentSideNavBox div > h2{
     @apply font-[500]
   }
   .childSideNavBox div > h2{
-    @apply font-[500]
+    @apply font-[500] text-[15px]
   }
   .parentSideNavBox div > p{
     @apply text-[14px] text-[#8E8E93]
@@ -138,6 +137,13 @@ body {
   .iconWrapper{
     @apply w-[60px] h-[60px] border-red-600 border
   }
+  .activeNav{
+    @apply text-[#5B00FF]
+  }
+  .imageInvert{
+    @apply invert-[#5B00FF]
+  }
+
 
   /* MEDIA QUERIES FOR ONBOARDING STYLES */
   @media screen and (max-width:768px){
@@ -203,6 +209,17 @@ body {
     .not-visible h1{
       @apply block
     }
+    /* PARENT DASHBOARD */
+    .hide_on_sm{
+      @apply hidden
+    }
+    /* .full_on_sm{
+      @apply w-full mx-0
+    } */
+    .footer_nav_bar{
+      @apply block absolute bottom-0
+    }
+
   }
 
 
@@ -218,6 +235,7 @@ body {
       @apply block
     }
   }
+
 
 }
 

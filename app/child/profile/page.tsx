@@ -6,7 +6,7 @@ import ChildProfileSection from '@/app/components/ChildProfileSection'
 
 export default function ChildProfile () {
   return (
-    <main className='bg-[#F8F4FF] h-[125vh]'>
+    <main className='bg-white md:bg-[#F8F4FF] h-[200vh] md:h-[125vh]'>
       <section className='profile'>
         <div className='flex justify-center items-center px-8 pt-10'>
           <ChildProfileSection />
@@ -14,7 +14,7 @@ export default function ChildProfile () {
       </section>
 
       <section className='mt-16 form'>
-        <div className='px-16'>
+        <div className='px-8 md:px-16'>
           <ChildProfileFormSection />
         </div>
       </section>

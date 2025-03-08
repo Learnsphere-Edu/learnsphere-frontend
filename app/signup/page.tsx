@@ -3,14 +3,14 @@ import SignUpForm from '../components/SignUpForm'
 
 export default function SignUp () {
   return (
-    <div className='relative z-30 bg-[#5B00FF] w-full h-screen overflow-hidden'>
+    <div className='z-30 relative bg-[#5B00FF] w-full h-screen overflow-hidden'>
       {/* content-wrapper */}
-      <h1 className='md:block top-20 z-20 absolute hidden opacity-40 font-potta_one text-[#FFEBD5] text-[260px]'>
+      <h1 className='hidden md:block top-20 z-20 absolute opacity-40 font-potta_one text-[#FFEBD5] text-[260px]'>
         WAZOBIA
       </h1>
-      <div className='relative z-30 flex justify-center items-center gap-20 -mt-[3rem] h-full'>
+      <div className='z-30 relative flex justify-center items-center gap-20 -mt-[3rem] h-full'>
         {/* signup image */}
-        <div className='md:flex items-center hidden w-[500px]'>
+        <div className='hidden md:flex items-center w-[500px]'>
           <Image
             src='/signupimg.png'
             alt='children'
@@ -20,7 +20,7 @@ export default function SignUp () {
           />
         </div>
         {/* signup form details */}
-        <div className='w-full h-[80vh]'>
+        <div className='h-[80vh]'>
           <SignUpForm />
         </div>
       </div>
@@ -36,7 +36,7 @@ export default function SignUp () {
           alt='background image'
           width={200}
           height={200}
-          className='bottom-[-1rem] z-20 absolute w-full overflow-hidden object-cover'
+          className='bottom-[-1rem] z-20 absolute w-full object-cover overflow-hidden'
         />
       </div>
     </div>

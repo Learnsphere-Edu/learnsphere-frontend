@@ -204,7 +204,7 @@ export default function CSideNav () {
                 alt='icon'
                 height={30}
                 width={30}
-                className='w-305px] h-[50px] object-contain'
+                className='w-[50px] h-[50px] object-contain'
               />
             </div>
             {/* content */}
@@ -229,7 +229,7 @@ export default function CSideNav () {
                 alt='icon'
                 height={30}
                 width={30}
-                className='w-305px] h-[50px] object-contain'
+                className='w-[50px] h-[50px] object-contain'
               />
             </div>
             {/* content */}
@@ -254,7 +254,7 @@ export default function CSideNav () {
                 alt='icon'
                 height={30}
                 width={30}
-                className='w-305px] h-[50px] object-contain'
+                className='w-[30px] h-[50px] object-contain'
               />
             </div>
             {/* content */}
