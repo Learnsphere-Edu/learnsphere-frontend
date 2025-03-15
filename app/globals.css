@@ -25,7 +25,16 @@
 body {
   font-family: 'Poppins';
 }
-
+@keyframes fadeIn{
+  from{
+    transform: translateX(-100);
+    opacity: 0;
+  }
+  to{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 @layer components{
   .onboarding{
     @apply h-auto md:h-screen w-full bg-[#F8F4FF] overflow-hidden 
@@ -34,7 +43,7 @@ body {
     @apply flex flex-col gap-[13rem]
   }
   .onboarding2{
-    @apply h-auto w-full bg-[#FFF4E5] overflow-hidden
+    @apply h-auto w-full bg-[#FFF4E5] overflow-hidden pb-6
   }
   header{
     @apply h-[10vh] w-full bg-white py-3 px-[80px] flex items-center justify-between
@@ -63,13 +72,18 @@ body {
     @apply hidden
   }
 
+  @media screen and (max-width:768px){
 
+  }
   /* SIGNUP FORM STYLES */
   .form-input{
-    @apply rounded-lg w-full md:py-3 md:px-5 py-4 px-4
+    @apply rounded-lg w-full md:py-3 md:px-5 py-4 px-4 border border-[#9C66FF] md:border-none
+  }
+  .form-input::placeholder{
+    @apply text-[15px] md:text-[18px]
   }
   .signupform-input{
-    @apply rounded-lg w-full py-1.5 px-5
+    @apply rounded-lg w-full md:py-2 md:px-5 py-3 px-8 text-[15px] md:text-[18px] opacity-75 border border-[#9C66FF] md:border-none
   }
   .signupform-input:focus{
     @apply outline-none
@@ -77,11 +91,11 @@ body {
   .form-input:focus{
     @apply outline-none
   }
-  .form-input::placeholder{
-    @apply text-[#000000] opacity-50
+  .signupform-input::placeholder{
+    @apply text-[#000000] opacity-50 text-[12px]
   }
 
-  
+  /* https://8fnt5dgr-3000.uks1.devtunnels.ms/ */
   /* INFO BOX STYLES */
   .curve-box{
     @apply absolute bottom-10 right-0 rounded-tl-[-4rem] rounded-3xl
@@ -143,12 +157,21 @@ body {
   .imageInvert{
     @apply invert-[#5B00FF]
   }
+  .profileform label{
+    @apply text-[12px] md:text-[13px]
+  }
+  .profileform input{
+    @apply placeholder:text-[12px] md:placeholder:text-[13px]
+  }
+  .childform label{
+    @apply text-[12px] md:text-[13px]
+  }
 
 
   /* MEDIA QUERIES FOR ONBOARDING STYLES */
   @media screen and (max-width:768px){
     .designs > div{
-      @apply w-[200px]
+      @apply w-[150px]
     }
     .wazobia h1{
       @apply text-[100px] hidden
@@ -159,6 +182,9 @@ body {
     .textbase{
       @apply w-[300px]
     }
+    .engage_img{
+      @apply w-[280px]
+    }
     .hidden-wazobia{
       @apply flex flex-col items-center justify-center -mt-[2rem]
     }
@@ -167,17 +193,21 @@ body {
       @apply grid-cols-3
     }
     .form-padding{
-      @apply px-6 
+      @apply px-0 
     }
   }
 
   /* MEDIA QUERIES FOR DEFAULT LANDING PAGE */
   @media screen and (max-width:768px){
-    /* .onboarding{
-      @apply h-auto
-    } */
+
     header{
       @apply px-[20px]
+    }
+    .logo .logo_image{
+      @apply w-[150px]
+    }
+    .hero-text-head > h1{
+      @apply text-[35px] 
     }
     .hero{
       @apply px-[20px]
@@ -192,16 +222,19 @@ body {
       @apply hidden
     }
     .hero-text-head p{
-      @apply text-center max-w-full
+      @apply text-center max-w-full font-semibold text-[15px]
     }
     .cartoon-wrapper {
       @apply flex flex-col items-center justify-center
+    }
+    .cartoon{
+      @apply w-[400px]
     }
     .next-btn{
       @apply bottom-20
     }
     .absolute-balls > div {
-      @apply w-[200px]
+      @apply w-[160px]
     }
     .not-visible{
       @apply flex flex-col items-center justify-center
@@ -213,30 +246,33 @@ body {
     .hide_on_sm{
       @apply hidden
     }
-    /* .full_on_sm{
-      @apply w-full mx-0
-    } */
+
     .footer_nav_bar{
       @apply block absolute bottom-0
     }
 
+    /* MOBILE NAV */
+    .mobileNav{
+      animation: fadeIn;
+    }
   }
 
 
   /* MEDIA QUERY FOR ALL FORMS */
   @media screen and (max-width:450px){
-    .loginform form{
+    /* .signupform form{
       @apply px-8
-    }
-    .signupform form{
-      @apply px-8
-    }
+    } */
     .px-wazobia{
       @apply block
     }
   }
 
-
+  @media screen and (max-width:375px){
+    .not-visible h1{
+      @apply text-[70px]
+     }
+    }
 }
 
 @layer utilities{

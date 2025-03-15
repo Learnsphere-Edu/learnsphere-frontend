@@ -7,6 +7,7 @@ import { FormEvent, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { showInfoToast } from '@/utils/toastUtils'
 import { UserDataProps } from '@/types'
+import Wazobia from './Wazobia'
 
 export default function SignUpForm () {
   const [error, setError] = useState<string>('')
@@ -110,42 +111,43 @@ export default function SignUpForm () {
   }
 
   return (
-    <div className='relative form-padding md:w-[500px] h-[100%] md:h-[470px] signupform'>
+    <div className='relative flex flex-col justify-center form-padding md:w-[500px] h-[100%] md:h-[470px] signupform'>
       <form
-        className='bg-white px-16 py-6 w-full h-full'
+        className='bg-white px-8 md:px-16 py-6 w-full h-full'
         onSubmit={handleSignUp}
       >
         <h2 className='mb-2 font-bold text-center'>Sign Up</h2>
-        <div className='relative mt-4 mb-6 md:mb-3'>
+        <h3 className='md:hidden block mt-3 mb-2 text-sm'>Please enter your details</h3>
+        <div className='relative mt-4 mb-4 md:mb-3'>
           <input
             type='text'
             name='username'
             placeholder='Full name'
-            className='bg-[#F8F4FF] form-input'
+            className='bg-[#F8F4FF] signupform-input'
             value={formData.username}
             onChange={handleChange}
             autoComplete='username'
             required
           />
         </div>
-        <div className='relative mb-6 md:mb-3'>
+        <div className='relative mb-4 md:mb-3'>
           <input
             type='email'
             name='email'
             placeholder='Email'
-            className='bg-[#F8F4FF] form-input'
+            className='bg-[#F8F4FF] signupform-input'
             value={formData.email}
             onChange={handleChange}
             autoComplete='email'
             required
           />
         </div>
-        <div className='relative mb-6 md:mb-3'>
+        <div className='relative mb-4 md:mb-3'>
           <input
             type={showPassword ? 'text' : 'password'}
             name='password'
             placeholder='Password'
-            className='bg-[#F8F4FF] form-input'
+            className='bg-[#F8F4FF] signupform-input'
             value={formData.password}
             onChange={handleChange}
             autoComplete='new-password'
@@ -164,12 +166,12 @@ export default function SignUpForm () {
             />
           </span>
         </div>
-        <div className='relative mb-6 md:mb-3'>
+        <div className='relative mb-4 md:mb-3'>
           <input
             type={showPassword ? 'text' : 'password'}
             name='password2'
             placeholder='Confirm Password'
-            className='bg-[#F8F4FF] form-input'
+            className='bg-[#F8F4FF] signupform-input'
             value={formData.password2}
             onChange={handleChange}
             autoComplete='new-password'
@@ -190,7 +192,7 @@ export default function SignUpForm () {
         </div>
         <CustomBtn
           title={loading ? 'Signing Up' : 'Sign Up'}
-          styles='w-full py-4 text-white font-semibold bg-[#5B00FF] rounded-lg'
+          styles='w-full py-4 text-white font-semibold bg-[#5B00FF] rounded-lg text-[14px] md:text-[18px]'
           type='submit'
           disabled={loading}
         />
@@ -198,10 +200,13 @@ export default function SignUpForm () {
           <span className='opacity-75 text-[14px] text-red-500'>{error}</span>
         )}
 
-        <div className='flex flex-col justify-center items-center'>
-          <span className='opacity-50 mt-3 text-[#000] text-center'>
+        <div className='flex flex-col items-end md:items-center'>
+          <span className='opacity-50 mt-1 text-[#000] text-[13px] text-center'>
             Already have an account?{' '}
-            <Link href='/signin' className='text-[#5B00FF]'>
+            <Link
+              href='/signin'
+              className='text-[#5B00FF] text-[13px]'
+            >
               Login
             </Link>
           </span>
@@ -212,12 +217,12 @@ export default function SignUpForm () {
             alt='Other authentication options'
             width={300}
             height={300}
-            className='mt-3 object-contain'
+            className='mt-1.5 object-contain'
           />
 
           {/* Google auth option button */}
           <div
-            className='relative mt-6 rounded-lg w-full cursor-pointer'
+            className='relative mt-1 rounded-lg w-full cursor-pointer'
             onClick={() => router.push('/signin')}
           >
             <Image
@@ -225,19 +230,20 @@ export default function SignUpForm () {
               alt='Google icon'
               width={30}
               height={30}
-              className='top-3 left-5 absolute cursor-pointer object-contain'
+              className='top-3 left-5 absolute object-contain cursor-pointer'
             />
             <CustomBtn
               type='button'
               title='Login with Google'
-              styles='bg-[#5B00FF] w-full font-semibold py-4 text-white cursor-pointer rounded-lg'
+              styles='bg-[#5B00FF] w-full font-semibold py-4 text-white text-[14px] cursor-pointer rounded-lg'
             />
           </div>
         </div>
+        <Wazobia styles='md:hidden opacity-60 mt-0 font-potta_one text-[#f8f4ff] text-[80px] text-center' />
       </form>
 
       {/* Decorative Eclipse Images */}
-      <div className='-top-6 -left-6 absolute'>
+      <div className='hidden md:block -top-6 -left-6 absolute'>
         <Image
           src='/eclipse.png'
           alt='Decorative circle'
@@ -246,7 +252,7 @@ export default function SignUpForm () {
           className='object-contain'
         />
       </div>
-      <div className='-top-6 -right-6 absolute'>
+      <div className='hidden md:block -top-6 -right-6 absolute'>
         <Image
           src='/eclipse.png'
           alt='Decorative circle'
@@ -255,7 +261,7 @@ export default function SignUpForm () {
           className='object-contain'
         />
       </div>
-      <div className='-bottom-12 -left-6 absolute'>
+      <div className='hidden md:block -bottom-12 -left-6 absolute'>
         <Image
           src='/eclipse.png'
           alt='Decorative circle'
@@ -264,7 +270,7 @@ export default function SignUpForm () {
           className='object-contain'
         />
       </div>
-      <div className='-right-6 -bottom-12 absolute'>
+      <div className='hidden md:block -right-6 -bottom-12 absolute'>
         <Image
           src='/eclipse.png'
           alt='Decorative circle'

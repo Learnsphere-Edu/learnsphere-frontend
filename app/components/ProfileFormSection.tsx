@@ -1,11 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CustomBtn from './CustomBtn'
 import Wazobia from './Wazobia'
 import { showInfoToast } from '@/utils/toastUtils'
 
 export default function ParentProfileFormSection () {
+  const [isRequiredData, setIsRequiredData] = useState<boolean>(false)
   const [parentProfileFormData, setParentProfileFormData] = useState({
     firstName: '',
     lastName: '',
@@ -16,6 +17,23 @@ export default function ParentProfileFormSection () {
     address: '',
     relationship_with_child: ''
   })
+
+  useEffect(() => {
+    const checkRequiredData = () => {
+      if (
+        (parentProfileFormData.firstName,
+        parentProfileFormData.lastName,
+        parentProfileFormData.relationship_with_child,
+        parentProfileFormData.gender,
+        parentProfileFormData.linkAcc === '')
+      ) {
+        setIsRequiredData(false)
+      } else {
+        setIsRequiredData(true)
+      }
+    }
+    checkRequiredData()
+  }, [parentProfileFormData])
 
   // function to handle normal form Input element change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,7 +72,11 @@ export default function ParentProfileFormSection () {
   // console.log(parentProfileFormData);
   // showInfoToast(`Your Email is: ${parentProfileFormData.email}`)
   return (
-    <form className='relative flex flex-col gap-5' method='post'>
+    <form
+      className='relative flex flex-col gap-5 profileform'
+      method='post'
+      onSubmit={handleSubmit}
+    >
       {/* absolute placement wazobia  */}
       <div className='flex flex-col justify-center items-center'>
         <Wazobia styles='text-[#FC9E481A] font-bold px-2 font-potta_one text-[70px] absolute top-[58vh] opacity-[75] md:hidden block z-10' />
@@ -127,7 +149,7 @@ export default function ParentProfileFormSection () {
           <select
             name='gender'
             id='gender'
-            className='z-[20] px-[25px] py-3 border border-[#5B00FF] md:border-0 rounded-lg focus:outline-none w-full text-[#CCCCCC] appearance-none'
+            className='z-[20] px-[25px] py-3 border border-[#5B00FF] md:border-0 rounded-lg focus:outline-none w-full text-[#CCCCCC] text-[12px] md:text-[13px] appearance-none cursor-pointer'
             value={parentProfileFormData.gender}
             onChange={handleSelectChange}
           >
@@ -144,7 +166,7 @@ export default function ParentProfileFormSection () {
           <select
             name='linkAcc'
             id='linkAcc'
-            className='px-[25px] py-3 border border-[#5B00FF] md:border-0 rounded-lg focus:outline-none w-full text-[#CCCCCC] appearance-none'
+            className='px-[25px] py-3 border border-[#5B00FF] md:border-0 rounded-lg focus:outline-none w-full text-[#CCCCCC] text-[12px] md:text-[13px] appearance-none cursor-pointer'
             value={parentProfileFormData.linkAcc}
             onChange={handleSelectChange}
           >
@@ -156,7 +178,10 @@ export default function ParentProfileFormSection () {
       </div>
       {/* row 4 */}
       <div className='flex flex-col gap-2 w-full'>
-        <label htmlFor='residentialAddress  ' className='font-bold'>
+        <label
+          htmlFor='residentialAddress  '
+          className='font-bold text-[17px] md:text-[19px]'
+        >
           Residential Address
         </label>
         <input
@@ -170,13 +195,16 @@ export default function ParentProfileFormSection () {
       </div>
       {/* row 5 */}
       <div className='flex flex-col gap-2 w-full'>
-        <label htmlFor='relationship  ' className='font-bold'>
+        <label
+          htmlFor='relationship  '
+          className='font-bold text-[17px] md:text-[19px]'
+        >
           Relationship with app user
         </label>
         <select
           name='relationship_with_child'
           id='relationship'
-          className='px-[25px] py-3 border border-[#5B00FF] md:border-0 rounded-lg focus:outline-none w-full text-[#CCCCCC] appearance-none'
+          className='px-[25px] py-3 border border-[#5B00FF] md:border-0 rounded-lg focus:outline-none w-full text-[#CCCCCC] text-[12px] md:text-[13px] appearance-none cursor-pointer'
           value={parentProfileFormData.relationship_with_child}
           onChange={handleSelectChange}
         >
@@ -188,8 +216,9 @@ export default function ParentProfileFormSection () {
 
       <CustomBtn
         title='Save'
-        styles='bg-[#5B00FF] text-white font-bold rounded-lg md:w-[100px] w-full py-3'
+        styles={`bg-[#5B00FF] text-white disabled:opacity-50 disabled:cursor-not-allowed font-bold rounded-lg md:w-[100px] w-full py-3`}
         type='submit'
+        disabled={isRequiredData ? false : true}
       />
     </form>
   )

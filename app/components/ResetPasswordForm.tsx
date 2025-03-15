@@ -3,19 +3,20 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import CustomBtn from './CustomBtn'
 import { useRouter } from 'next/navigation'
+import Wazobia from './Wazobia'
 
 export default function ResetPasswordForm () {
   const [showPasword, setShowPassword] = useState<boolean>(false)
   const [showConfirmPasword, setShowConfirmPassword] = useState<boolean>(false)
-    const router = useRouter()
+  const router = useRouter()
 
-    const handleResetPassword = () => {
-        router.push('/dashboard')
-    }
+  const handleResetPassword = () => {
+    router.push('/dashboard')
+  }
   return (
     <div className='relative md:form-padding md:w-[500px] h-[500px] md:h-[470px] signupform'>
       <form
-        className='bg-white px-16 py-6 w-full h-full'
+        className='bg-white px-8 md:px-16 py-6 w-full h-full'
         // onSubmit={handleLoginAuth}
       >
         <h2 className='mb-2 font-bold text-center'>Reset Password</h2>
@@ -33,7 +34,6 @@ export default function ResetPasswordForm () {
             placeholder='Password'
             className='bg-[#F8F4FF] form-input'
             autoComplete='new-password'
-
           />
           <span
             className='top-3 right-3 absolute cursor-pointer'
@@ -71,17 +71,16 @@ export default function ResetPasswordForm () {
         </div>
 
         <CustomBtn
-          title='Reset'
-          styles='mt-4 w-full bg-[#5B00FF] text-white rounded-lg py-2 mt-[6rem]'
+          title='Reset Password'
+          styles=' w-full bg-[#5B00FF] text-white rounded-lg py-2 mt-[3rem]'
           type='button'
           event={handleResetPassword}
         />
+        <Wazobia styles='md:hidden opacity-60 mt-6 font-potta_one text-[#f8f4ff] text-[80px] text-center' />
       </form>
 
-
-
       {/* Eclipse images for designs */}
-      <div className='md:block -top-6 -left-6 absolute hidden'>
+      <div className='hidden md:block -top-6 -left-6 absolute'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -90,7 +89,7 @@ export default function ResetPasswordForm () {
           className='object-contain'
         />
       </div>
-      <div className='md:block -top-6 -right-6 absolute hidden'>
+      <div className='hidden md:block -top-6 -right-6 absolute'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -99,7 +98,7 @@ export default function ResetPasswordForm () {
           className='object-contain'
         />
       </div>
-      <div className='md:block -bottom-12 -left-6 absolute hidden'>
+      <div className='hidden md:block -bottom-12 -left-6 absolute'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -108,7 +107,7 @@ export default function ResetPasswordForm () {
           className='object-contain'
         />
       </div>
-      <div className='md:block -right-6 -bottom-12 absolute hidden'>
+      <div className='hidden md:block -right-6 -bottom-12 absolute'>
         <Image
           src='/eclipse.png'
           alt='circle'

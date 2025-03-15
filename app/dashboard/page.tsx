@@ -48,9 +48,10 @@ export default function Dashboard () {
           </h2>
           <p className='mx-w- mt-[0.5remax-w-[70%] md:max-w-[50%] text-[#FF7A00] text-[18px]'>
             "Learn new words and phrases as you journey through fun, interactive
-            stories!"          </p>
+            stories!"{' '}
+          </p>
 
-          <PostionalImages/>
+          <PostionalImages />
         </div>
       </section>
 
@@ -70,7 +71,9 @@ export default function Dashboard () {
               height={30}
               className='object-contain'
             />
-            <span className='text-[#360099] text-[15px] md:text-[20px]'>09 Days</span>
+            <span className='text-[#360099] text-[15px] md:text-[20px]'>
+              09 Days
+            </span>
           </h2>
 
           {/* progress wr */}
@@ -99,7 +102,8 @@ export default function Dashboard () {
           </div>
           <div className='flex flex-col gap-1.5 md:gap-3 message'>
             <span className='font-bold text-[#360099] text-[16px] md:text-[18px]'>
-              you have achieved <span className='text-black'>225</span> Diamonds so far
+              you have achieved <span className='text-black'>225</span> Diamonds
+              so far
             </span>
             <span className='text-[#7C33FF] text-[18px] md:text-[20px]'>
               Don&apos;t stop now, keep going and uncover more treasures

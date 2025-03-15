@@ -31,7 +31,7 @@ export default function FooterNavigationBar ({
               alt='icon'
               width={30}
               height={30}
-              className={`object-contain ${pathName === homeRouteTo ? 'imageInvert' : ''}`}
+              className={`object-contain w-[20px] md:w-[25px] ${pathName === homeRouteTo ? 'imageInvert' : ''}`}
             />
             <h2 className={`${pathName === homeRouteTo ? 'activeNav' : ''}`}>Home</h2>
           </div>
@@ -44,7 +44,7 @@ export default function FooterNavigationBar ({
               alt='icon'
               width={30}
               height={30}
-              className={`object-contain ${pathName === dashboardRouteTo ? 'invertImage' : ''}`}
+              className={`object-contain w-[20px] md:w-[25px] ${pathName === dashboardRouteTo ? 'invertImage' : ''}`}
             />
             <h2 className={`${pathName === dashboardRouteTo ? 'activeNav' : ''}`}>Dashboard</h2>
           </div>
@@ -57,7 +57,7 @@ export default function FooterNavigationBar ({
               alt='icon'
               width={30}
               height={30}
-              className={`object-contain ${pathName === inboxRouteTo ? 'invertImage' : ''}`}
+              className={`object-contain w-[20px] md:w-[25px] ${pathName === inboxRouteTo ? 'invertImage' : ''}`}
             />
             <h2 className={`${pathName === inboxRouteTo ? 'activeNav' : ''}`}>Inbox</h2>
           </div>
@@ -70,7 +70,7 @@ export default function FooterNavigationBar ({
               alt='icon'
               width={30}
               height={30}
-              className={` object-contain ${pathName === profileRouteTo ? 'invertImage' : ''}`}
+              className={` object-contain w-[20px] md:w-[25px] ${pathName === profileRouteTo ? 'invertImage' : ''}`}
             />
             <h2 className={`${pathName === profileRouteTo ? 'activeNav' : ''}`}>Profile</h2>
           </div>

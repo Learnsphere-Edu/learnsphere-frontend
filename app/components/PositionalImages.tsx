@@ -79,7 +79,7 @@ export default function PostionalImages () {
         alt='flower image'
         width={180}
         height={90}
-        className='top-[2.3rem] right-0 z-10 absolute object-contain'
+        className='top-[0] right-0 z-10 absolute object-contain'
       />
     </>
   )

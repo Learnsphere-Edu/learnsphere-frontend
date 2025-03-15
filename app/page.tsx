@@ -33,18 +33,20 @@ export default function Onboarding () {
 
             {/* hero-image */}
             <div className='md:h-[400px] cartoon-wrapper'>
-              <div className='block hidden-heading md:hidden'>
+              <div className='hidden-heading md:hidden block'>
                 <h1 className='mt-3 font-bold text-[#09001A] text-[25px] text-center leading-[2.3rem]'>
                   Celebrate Nigeria&apos;s rich cultural diversity!
                 </h1>
               </div>
+              <div>
               <Image
                 alt='cartoonised image'
-                src='/new_child_img.png'
+                src='/babycloud.png'
                 width={800}
                 height={800}
-                className='cartoon object-contain'
+                className='object-contain cartoon'
               />
+              </div>
             </div>
           </div>
           <div className='mt-8 not-visible'>
@@ -60,7 +62,7 @@ export default function Onboarding () {
             <NextButton />
           </div>
           {/* hero-wazobia */}
-          <div className='md:block hidden -mt-[20rem] overflow-hidden'>
+          <div className='hidden md:block -mt-[20rem] overflow-hidden'>
             <h1 className='z-10 -ml-3 font-potta_one text-[#EFE5FF] text-[260px]'>
               WAZOBIA
             </h1>

@@ -14,7 +14,7 @@ export const useAuth = () => {
 
     // check if email  and password are empty
     if(!email || !password){
-      // setError('Fields cannot be empty')
+      setError('Fields cannot be empty')
       showInfoToast('Fields cannot be empty')
       setLoading(false)
       return
@@ -22,7 +22,7 @@ export const useAuth = () => {
 
     // check if password is valid
     if (password.length < 8) {
-      // setError('Password is not Valid')
+      setError('Password is not Valid')
       showInfoToast('Password is not valid!')
       setLoading(false)
       return
@@ -31,7 +31,11 @@ export const useAuth = () => {
     try {
       const response = await fetch('/api/login/', {
         method: 'POST',
-        body: JSON.stringify({ email, password })
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password }),
+
       })
 
       if (!response.ok){
@@ -39,11 +43,11 @@ export const useAuth = () => {
         // handle specific error messages
 
         if(response.status === 401){
-          // setError('Invalid Email or Password')
+          setError('Invalid Email or Password')
           showInfoToast('Invalid Email or Password!')
         }
         else{
-          // setError(data.message || 'Login Failed')
+          setError(data.message || 'Login Failed')
           showInfoToast(data.message || 'Login Failed')
         }
         setLoading(false)
@@ -63,7 +67,7 @@ export const useAuth = () => {
       router.push('/child-info')
     } catch (err) {
       console.error('Error', err)
-      // setError('An error occurred. Please try again.')
+      setError('An error occurred. Please try again.')
       showInfoToast('An error occurred. Please try again later!')
     }
     finally{

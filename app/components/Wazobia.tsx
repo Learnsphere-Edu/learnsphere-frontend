@@ -3,7 +3,7 @@ interface Props{
 }
 export default function Wazobia({styles}:Props) {
     return(
-        <h1 className={`${styles}`}>
+        <h1 className={`text-[60px] sm:text-[80px] ${styles}`}>
             WAZOBIA
             
         </h1>

@@ -7,11 +7,11 @@ export default function ChildProfileSection () {
       <div>
         {/* this image will have a defualt image at first, but it will be dynamic, specific to what a user chooses. the user will be allowed to select from their computer */}
         <Image
-          src='/profile img.png'
+          src='/child profile.png'
           alt='Profile Image'
           width={120}
           height={120}
-          className='object-contain'
+          className='rounded-full w-[100px] sm:w-[110px] md:w-[130px] object-contain'
         />
       </div>
       <div className='flex gap-4'>
@@ -19,13 +19,13 @@ export default function ChildProfileSection () {
         <CustomBtn
           title='Edit Account'
           disabled={false}
-          styles='bg-[#5B00FF] text-white rounded-lg px-[20px] md:px-[30px] py-3 font-[500]'
+          styles='bg-[#5B00FF] text-white rounded-lg px-[8px] sm:px-[15px] md:px-[30px] py-3 font-[500]'
           type='button'
         />
         <CustomBtn
           title='Delete Account'
           disabled={false}
-          styles='bg-[#ffffff] border border-[#5B00FF] md:border-0 text-black rounded-lg px-[20px] md:px-[30px] py-3 font-[500]'
+          styles='bg-[#ffffff] text-black rounded-lg px-[8px] md:px-[30px]  py-3 font-[500] border border-[#5B00FF] md:border-0'
           type='button'
         />
       </div>

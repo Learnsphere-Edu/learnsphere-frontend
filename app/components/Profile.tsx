@@ -10,7 +10,7 @@ export default function ProfileSection () {
           alt='Profile Image'
           width={120}
           height={120}
-          className='object-contain'
+          className='w-[100px] sm:w-[110px] md:w-[130px] object-contain'
         />
       </div>
       <div className='flex gap-4'>
@@ -18,13 +18,13 @@ export default function ProfileSection () {
         <CustomBtn
           title='Edit Account'
           disabled={false}
-          styles='bg-[#5B00FF] text-white rounded-lg px-[20px] md:px-[30px] py-3 font-[500]'
+          styles='bg-[#5B00FF] text-white rounded-lg px-[8px] sm:px-[15px] md:px-[30px] py-3 font-[500]'
           type='button'
         />
         <CustomBtn
           title='Delete Account'
           disabled={false}
-          styles='bg-[#ffffff] text-black rounded-lg px-[20px] md:px-[30px]  py-3 font-[500] border border-[#5B00FF] md:border-0'
+          styles='bg-[#ffffff] text-black rounded-lg px-[8px] md:px-[30px]  py-3 font-[500] border border-[#5B00FF] md:border-0'
           type='button'
         />
       </div>

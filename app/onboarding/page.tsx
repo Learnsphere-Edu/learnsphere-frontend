@@ -38,7 +38,7 @@ export default function Onboarding2 () {
       <div className='relative flex md:flex-row flex-col justify-center items-center gap-[3rem] md:gap-[10rem] mt-[5rem] md:-mt-[5rem] engage'>
         <div className='engage-text'>
           <Image
-            src='/new-text_base.png'
+            src='/eclipse text.png'
             alt='cloud'
             width={300}
             height={300}
@@ -55,7 +55,7 @@ export default function Onboarding2 () {
             alt='children'
             width={350}
             height={350}
-            className='object-contain'
+            className='object-contain engage_img'
           />
         </div>
         <div className='hidden-wazobia'>

@@ -2,7 +2,7 @@ import CustomBtn from './CustomBtn'
 
 export default function ChildProfileFormSection () {
   return (
-    <form className='flex flex-col gap-5' method='post'>
+    <form className='flex flex-col gap-5 childform' method='post'>
       {/*form  rows */}
       <div className='flex md:flex-row flex-col items-center gap-4 w-full'>
         <div className='flex flex-col flex-1 gap-2 w-full'>
@@ -11,7 +11,7 @@ export default function ChildProfileFormSection () {
             <span className='text-[14px] text-red-600 required'>*</span>
           </label>
           <input
-            className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full'
+            className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full placeholder:text-[12px]'
             type='text'
             name='firstName'
             placeholder='Enter First Name'
@@ -23,7 +23,7 @@ export default function ChildProfileFormSection () {
             <span className='text-[14px] text-red-600 required'>*</span>
           </label>
           <input
-            className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full'
+            className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full placeholder:text-[12px]'
             type='text'
             name='lastName'
             placeholder='Enter Last Name'
@@ -40,7 +40,7 @@ export default function ChildProfileFormSection () {
           <select
             name='gender'
             id='gender'
-            className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full appearance-none'
+            className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full text-[#CCCCCC] text-[12px] md:text-[13px] appearance-none'
           >
             <option value='nil'>Select Your Gender</option>
             <option value='male'>Male</option>
@@ -52,7 +52,7 @@ export default function ChildProfileFormSection () {
             Age <span className='text-[14px] text-red-600 required'>*</span>
           </label>
           <input
-            className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full'
+            className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full placeholder:text-[12px]'
             type='text'
             name='age'
             placeholder='How old are you?'
@@ -68,7 +68,7 @@ export default function ChildProfileFormSection () {
             <span className='text-[14px] text-red-600 required'>*</span>
           </label>
           <input
-            className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full'
+            className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full placeholder:text-[12px]'
             type='text'
             name='language'
             placeholder='Select language'
@@ -79,7 +79,7 @@ export default function ChildProfileFormSection () {
             Language Level{' '}
           </label>
           <input
-            className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full'
+            className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full placeholder:text-[12px]'
             type='text'
             name='level'
             placeholder='Select your language level'
@@ -92,7 +92,7 @@ export default function ChildProfileFormSection () {
           Residential Address
         </label>
         <input
-          className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full'
+          className='px-[25px] py-3 border border-[#5B00FF] rounded-lg focus:outline-none w-full placeholder:text-[12px]'
           type='text'
           placeholder='Enter Residential Address'
           name='residentialAddress'

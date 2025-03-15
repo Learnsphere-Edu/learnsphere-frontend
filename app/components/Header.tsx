@@ -11,7 +11,7 @@ export default function Header() {
                     src='/logo.jpg'
                     width={200}
                     height={200}
-                    className="object-contain"
+                    className="object-contain logo_image"
                 />
             </div>
             <div className="header-btn">

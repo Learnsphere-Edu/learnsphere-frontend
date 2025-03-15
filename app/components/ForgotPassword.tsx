@@ -4,11 +4,12 @@ import Image from 'next/image'
 import CustomBtn from './CustomBtn'
 import { useRouter } from 'next/navigation'
 import { showInfoToast } from '@/utils/toastUtils'
+import Wazobia from './Wazobia'
 
 export default function ForgotPwordForm () {
   const router = useRouter()
   const [userEmail, setUserEmail] = useState<string>('')
-  const [loading,setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
   // fuction to send verification code to userEmail
@@ -66,20 +67,19 @@ export default function ForgotPwordForm () {
     } catch (error) {
       console.error('Error', error)
       showInfoToast('An unknown error occurred, try again later!')
-    }
-    finally{
+    } finally {
       setLoading(false)
     }
   }
   return (
     <div className='relative md:form-padding md:w-[500px] h-[500px] md:h-[470px] signupform'>
       <form
-        className='bg-white px-16 py-6 w-full h-full'
+        className='bg-white px-8 md:px-16 py-6 w-full h-full'
         onSubmit={handleSendEmail}
       >
         <h2 className='mb-2 font-bold text-center'>Forgot Password</h2>
         {/* guide */}
-        <p className='opacity-50 mt-4 text-black'>
+        <p className='opacity-50 mt-4 text-[12px] text-black md:text-[15px]'>
           Enter the email address with your account and we&apos;ll send an email
           with confirmation to reset your password.
         </p>
@@ -104,10 +104,12 @@ export default function ForgotPwordForm () {
           styles='mt-4 w-full bg-[#5B00FF] text-white rounded-lg py-2 mt-[6rem]'
           type='submit'
         />
+
+        <Wazobia styles='md:hidden opacity-60 mt-16 font-potta_one text-[#f8f4ff] text-[80px] text-center' />
       </form>
 
       {/* Eclipse images for designs */}
-      <div className='md:block -top-6 -left-6 absolute hidden'>
+      <div className='hidden md:block -top-6 -left-6 absolute'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -116,7 +118,7 @@ export default function ForgotPwordForm () {
           className='object-contain'
         />
       </div>
-      <div className='md:block -top-6 -right-6 absolute hidden'>
+      <div className='hidden md:block -top-6 -right-6 absolute'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -125,7 +127,7 @@ export default function ForgotPwordForm () {
           className='object-contain'
         />
       </div>
-      <div className='md:block -bottom-12 -left-6 absolute hidden'>
+      <div className='hidden md:block -bottom-12 -left-6 absolute'>
         <Image
           src='/eclipse.png'
           alt='circle'
@@ -134,7 +136,7 @@ export default function ForgotPwordForm () {
           className='object-contain'
         />
       </div>
-      <div className='md:block -right-6 -bottom-12 absolute hidden'>
+      <div className='hidden md:block -right-6 -bottom-12 absolute'>
         <Image
           src='/eclipse.png'
           alt='circle'

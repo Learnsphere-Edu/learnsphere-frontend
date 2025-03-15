@@ -12,12 +12,14 @@ export default function ChildInfo () {
   }
 
   return (
-    <div className='relative z-30 bg-[#5B00FF] w-full min-h-screen overflow-hidden'>
+    <div className='z-30 relative bg-white md:bg-[#5B00FF] w-full min-h-screen overflow-hidden'>
       {/* content-wrapper */}
-      <h1 className='md:block top-20 z-20 absolute hidden opacity-40 font-potta_one text-[#FFEBD5] text-[260px]'>WAZOBIA</h1>
-      <div className='relative z-30 flex justify-center items-center gap-20 mt-[2rem] h-full'>
+      <h1 className='hidden md:block top-20 z-20 absolute opacity-40 font-potta_one text-[#FFEBD5] text-[260px]'>
+        WAZOBIA
+      </h1>
+      <div className='z-30 relative md:flex justify-center items-center gap-20 mt-[2rem] h-full'>
         {/* signin image */}
-        <div className='md:flex items-center hidden w-[500px]'>
+        <div className='hidden md:flex items-center w-[500px]'>
           <Image
             src='/signinimg.png'
             alt='children'
@@ -28,18 +30,27 @@ export default function ChildInfo () {
         </div>
         {/* child data form details */}
         <div className='h-[80vh]'>
-            <ChildForm />
+          <ChildForm />
         </div>
       </div>
 
       {/* bubble designs */}
-      <div className='bubble'>
+      <div className='hidden md:block bubble'>
         <Image
           src='/white-bubble-design.png'
           alt='background image'
           width={200}
           height={200}
-          className='bottom-[-1rem] z-20 absolute w-full overflow-hidden object-cover'
+          className='bottom-[-1rem] z-20 absolute w-full object-cover overflow-hidden'
+        />
+      </div>
+      <div className='md:hidden block bubble'>
+        <Image
+          src='/bubble puruple.png'
+          alt='background image'
+          width={200}
+          height={200}
+          className='bottom-[-1rem] z-20 absolute w-full object-cover overflow-hidden'
         />
       </div>
     </div>
