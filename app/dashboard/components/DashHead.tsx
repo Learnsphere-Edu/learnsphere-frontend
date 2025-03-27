@@ -3,18 +3,13 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 export default function DashboardHeader () {
   const [profileName, setProfileName] = useState<string | null>(null)
-  // const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const user = localStorage.getItem('currentUser')
-      setProfileName(user)
+    if (typeof window !== "undefined") {
+      const user = localStorage.getItem("currentUser");
+      setProfileName(user ? user : null); 
     }
-  }, [])
-
-  const displayProfileName = () => {
-    return profileName
-  }
+  }, []);
 
   return (
     <header className='flex items-center bg-[#5B00FF] w-full h-[10vh]'>
@@ -32,7 +27,7 @@ export default function DashboardHeader () {
 
         <div className='flex items-center gap-3 md:gap-8 name_notfn'>
           <h2 className='font-bold text-white'>
-            Hello, <span>{displayProfileName()}</span>
+            Hello, <span>{profileName || 'Guest'}</span>
           </h2>
 
           <div className='flex items-center gap-2'>

@@ -37,11 +37,3 @@ export async function GET (request: Request) {
   }
 }
 
-// // to retrieve profile info in realtime
-// export default function POST(request: Request){
-//        try {
-              
-//        } catch (error) {
-              
-//        }
-// }
