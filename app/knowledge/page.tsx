@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import ChildKnowledgeForm from '../globalcomponents/ChildKnowledgeForm'
+import ChildKnowledgeForm from './ChildKnowledgeForm'
 import { isAuthenticated } from '@/utils'
 import { useRouter } from 'next/navigation'
 

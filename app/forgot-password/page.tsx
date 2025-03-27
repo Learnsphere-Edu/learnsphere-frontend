@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import ForgotPwordForm from './components/ForgotPassword'
-import Wazobia from '../globalcomponents/Wazobia'
 
 export default function ForgotPassword () {
   return (

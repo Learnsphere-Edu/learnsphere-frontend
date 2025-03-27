@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import ChildForm from '../globalcomponents/ChildForm'
+import ChildForm from './components/ChildForm'
 import { isAuthenticated } from '@/utils'
 import { useRouter } from 'next/navigation'
 

@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 const ResendVerificationCode = () => {
   const [timeLeft, setTimeLeft] = useState(0); // Time left in seconds
   const [isCooldown, setIsCooldown] = useState(false); // Whether cooldown is active
-  const router = useRouter()
+  // const router = useRouter()
 
   useEffect(() => {
     let timer: NodeJS.Timeout;

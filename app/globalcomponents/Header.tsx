@@ -1,5 +1,4 @@
 import Image from "next/image"
-import CustomBtn from "./CustomBtn"
 import SignUpBtn from "./SignUpBtn"
 export default function Header() {
     return (

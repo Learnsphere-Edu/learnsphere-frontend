@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 export default function DashboardHeader () {
   const [profileName, setProfileName] = useState<string | null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
+  // const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -32,7 +32,7 @@ export default function DashboardHeader () {
 
         <div className='flex items-center gap-3 md:gap-8 name_notfn'>
           <h2 className='font-bold text-white'>
-            Hello, <span>{!loading ? displayProfileName() : 'User'}</span>
+            Hello, <span>{displayProfileName()}</span>
           </h2>
 
           <div className='flex items-center gap-2'>

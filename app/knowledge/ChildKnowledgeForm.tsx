@@ -1,10 +1,10 @@
 'use client'
 import { FormEvent, useState } from 'react'
-import CustomBtn from './CustomBtn'
+import CustomBtn from '../globalcomponents/CustomBtn'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import { showInfoToast } from '@/utils/toastUtils'
-import Wazobia from './Wazobia'
+import Wazobia from '../globalcomponents/Wazobia'
 
 export default function ChildKnowledgeForm () {
   const options = [
