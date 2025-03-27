@@ -9,16 +9,17 @@ import Wazobia from '../../globalcomponents/Wazobia'
 export default function ChildForm () {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
-  const [data, setData] = useState<string>('')
+  // const [data, setData] = useState<string>('')
 
   const handleChildInfoCollection = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
     setError('')
 
-    const childFormData = new FormData(e.currentTarget)
+    // const childFormData = new FormData(e.currentTarget)
     redirect('/schedule')
   }
+  console.log(error)
 
   return (
     <div className='relative md:w-[500px] h-[100%] md:h-[470px] signupform'>
@@ -26,7 +27,7 @@ export default function ChildForm () {
         className='bg-white px-8 md:px-16 py-6 w-full h-full'
         onSubmit={handleChildInfoCollection}
       >
-        <h2 className='mb-5 font-bold text-center'>Child's Information</h2>
+        <h2 className='mb-5 font-bold text-center'>Child&apos;s Information</h2>
         <div className='relative mb-3'>
           <input
             type='text'

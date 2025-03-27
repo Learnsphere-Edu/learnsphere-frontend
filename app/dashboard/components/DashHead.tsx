@@ -44,7 +44,7 @@ export default function DashboardHeader () {
               className='object-contain'
             />
             <span className='hidden md:block font-bold text-[#F8F4FF]'>
-              "A new quest is waiting"
+              &quot;A new quest is waiting&quot;
             </span>
           </div>
         </div>

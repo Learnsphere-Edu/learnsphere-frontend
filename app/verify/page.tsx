@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import VerifyForm from './components/VerifyForm'
-import Wazobia from '../globalcomponents/Wazobia'
 
 export default function Verify () {
   return (

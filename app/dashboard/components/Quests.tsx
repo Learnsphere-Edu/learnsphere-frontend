@@ -5,8 +5,8 @@ export default function Quests () {
       <div className={`${styles.questWrapper}`}>
         <h2>Embark on a Language Adventure</h2>
         <p>
-          "Learn new words and phrases as you journey through fun, interactive
-          stories!"{' '}
+          &quot;Learn new words and phrases as you journey through fun, interactive
+          stories!&quot;{' '}
         </p>
 
         <div className={`${styles.questItr}`}>

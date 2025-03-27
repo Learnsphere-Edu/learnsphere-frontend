@@ -1,12 +1,12 @@
 'use client'
 import Image from 'next/image'
-import { usePathname, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
+// import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 export default function PSideNav () {
-  const router = useRouter()
-  const [activeLink, setActiveLink] = useState<string>('dashboard')
+  // const router = useRouter()
+  // const [activeLink, setActiveLink] = useState<string>('dashboard')
   const pathName = usePathname()
   console.log(pathName)
   // function to handle active link change

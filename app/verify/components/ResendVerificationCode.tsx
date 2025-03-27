@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 const ResendVerificationCode = () => {
@@ -30,7 +29,7 @@ const ResendVerificationCode = () => {
 
     // Cleanup on component unmount or if cooldown state changes
     return () => clearInterval(timer);
-  }, [isCooldown]);
+  }, [isCooldown, timeLeft]);
 
   const handleResendCode = () => {
     if (!isCooldown) {
@@ -40,7 +39,6 @@ const ResendVerificationCode = () => {
       
     }
   };
-// https://8fnt5dgr-3000.uks1.devtunnels.ms/
 
   return (
     <div>

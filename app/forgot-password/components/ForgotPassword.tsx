@@ -7,10 +7,11 @@ import { showInfoToast } from '@/utils/toastUtils'
 import Wazobia from '../../globalcomponents/Wazobia'
 
 export default function ForgotPwordForm () {
-  const router = useRouter()
+  // const router = useRouter()
   const [userEmail, setUserEmail] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
+  console.log(error, loading)
 
   // fuction to send verification code to userEmail
   const handleSendVeriCode = async (veriCode: number | string | undefined) => {

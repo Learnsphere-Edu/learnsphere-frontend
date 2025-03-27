@@ -4,7 +4,7 @@ import { FaTimes } from 'react-icons/fa'
 interface Props {
   closeNav: () => void
 }
-export default function ({ closeNav }: Props) {
+export default function MobileSideNav ({ closeNav }: Props) {
   return (
     <nav className='md:hidden top-0 left-0 z-[100] fixed bg-white p-8 w-full h-screen transition-all duration-300 ease-in-out mobileNav'>
       <div className='mb-16 logo'>

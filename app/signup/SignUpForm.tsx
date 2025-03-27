@@ -12,7 +12,6 @@ import Wazobia from '../globalcomponents/Wazobia'
 export default function SignUpForm () {
   const [error, setError] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
-  // Removed unused "userToken" state variable
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [formData, setFormData] = useState<UserDataProps>({
     email: '',
@@ -43,7 +42,7 @@ export default function SignUpForm () {
     setLoading(true)
     setError('')
 
-    let errors: string[] = []
+    const errors: string[] = []
 
     // Client-side validations:
     if (!validateEmail(formData.email)) {
