@@ -2,7 +2,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import Image from 'next/image'
 import CustomBtn from '../../globalcomponents/CustomBtn'
-import { useRouter } from 'next/navigation'
 import { showInfoToast } from '@/utils/toastUtils'
 import Wazobia from '../../globalcomponents/Wazobia'
 
