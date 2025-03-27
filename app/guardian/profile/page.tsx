@@ -1,7 +1,7 @@
 // this page is the profile page of the currently logged in guradian, where he can edit and save his/her profile bio
 
-import ProfileSection from '@/app/components/Profile'
-import ParentProfileFormSection from '@/app/components/ProfileFormSection'
+import ProfileSection from '@/app/guardian/components/Profile'
+import ParentProfileFormSection from '@/app/guardian/components/ProfileFormSection'
 
 export default function GuardianProfile () {
   

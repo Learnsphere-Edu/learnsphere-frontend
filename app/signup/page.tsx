@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import SignUpForm from '../components/SignUpForm'
+import SignUpForm from './SignUpForm'
 
 export default function SignUp () {
   return (

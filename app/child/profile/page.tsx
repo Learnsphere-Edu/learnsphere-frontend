@@ -1,7 +1,7 @@
 // this page is the profile page of the currently logged in guradian, where he can edit and save his/her profile bio
 
-import ChildProfileFormSection from '@/app/components/ChildProfileForm'
-import ChildProfileSection from '@/app/components/ChildProfileSection'
+import ChildProfileFormSection from '@/app/child/components/ChildProfileForm'
+import ChildProfileSection from '@/app/child/components/ChildProfileSection'
 
 
 export default function ChildProfile () {

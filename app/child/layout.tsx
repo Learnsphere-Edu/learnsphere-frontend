@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import '../globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-import ChildHeader from '../components/ChildHeader'
-import CSideNav from '../components/CSideNav'
-import FooterNavigationBar from '../components/FooterNav'
-import SearchBox from '../components/SearchBox'
+import ChildHeader from './components/ChildHeader'
+import CSideNav from './components/CSideNav'
+import FooterNavigationBar from '../globalcomponents/FooterNav'
+import SearchBox from '../globalcomponents/SearchBox'
 
 export const metadata: Metadata = {
   title: 'Manage your own activities with Learnsphere',

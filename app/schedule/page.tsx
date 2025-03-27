@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import ScheduleForm from '../components/ScheduleForm'
+import ScheduleForm from './ScheduleForm'
 
 
 export default function Schedule () {

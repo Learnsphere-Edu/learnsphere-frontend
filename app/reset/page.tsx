@@ -1,6 +1,6 @@
 import Image from "next/image"
-import ResetPasswordForm from "../components/ResetPasswordForm"
-import Wazobia from "../components/Wazobia"
+import ResetPasswordForm from "./ResetPasswordForm"
+import Wazobia from "../globalcomponents/Wazobia"
 export default function ResetPassword() {
     return(
          <div className='z-30 relative bg-white md:bg-[#5B00FF] w-full min-h-screen overflow-hidden'>

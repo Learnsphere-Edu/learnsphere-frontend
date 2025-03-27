@@ -1,7 +1,7 @@
-import { Header } from './components'
+import { Header } from './globalcomponents'
 import Image from 'next/image'
-import NextButton from './components/NextBtn'
-import SignUpBtn from './components/SignUpBtn'
+import NextButton from './globalcomponents/NextBtn'
+import SignUpBtn from './globalcomponents/SignUpBtn'
 
 export default function Onboarding () {
   return (
@@ -49,7 +49,7 @@ export default function Onboarding () {
               </div>
             </div>
           </div>
-          <div className='mt-8 not-visible'>
+          <div className='not-visible mt-8'>
             <h1 className='z-10 font-potta_one text-[#EFE5FF] text-[80px]'>
               WAZOBIA
             </h1>

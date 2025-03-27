@@ -35,3 +35,30 @@ export default function SignUp () {
     </div>
   )
 }
+
+
+
+// STATISTICS MISC
+      <section
+        className={`mb-[1rem] px-[1rem] md:px-[5rem] ${styles.statistics}`}
+      >
+        <h2 className={`pt-4 font-bold text-[#360099] text-[21px] md:text-[23px] ${styles.heading}`}>
+          Statistics
+        </h2>
+        {/* Display statistics */}
+        <div
+          className={`flex flex-nowrap justify-center md:justify-evenly items-center gap-4 bg-[#5b00ff] bg-contain bg-no-repeat bg-bottom px-[10px] rounded-t-xl h-[230px] md:h-[330px] overflow-x-auto ${styles.statisticsWrapper}`}
+          style={{ backgroundImage: 'url(/barchartbg.png)' }}
+        >
+          {/* Mapping through properties of each element */}
+          {DashboardStatistics.map(statistics => (
+            <StatisticsCard
+              icon={statistics.icon}
+              image={statistics.image}
+              text={statistics.text}
+              title={statistics.title}
+              key={statistics.id}
+            />
+          ))}
+        </div>
+      </section>

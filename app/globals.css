@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --background: ##F8F4FF;
+  --background: #F8F4FF;
   --purple-dark: #09001A;
   --main-purple: #5B00FF;
   --light-purple: #EFE5FF;
@@ -13,6 +13,13 @@
   --main-light: #FFF4E5;
   --main-soft: #FC9E48;
   --main-hard: #FF7A00;
+
+  /* font sizes */
+  --font-xsm: 14px;
+  --font-sm: 16px;
+  --font-md: 20px;
+  --font-lg: 23px;
+  --font-xl: 35px;
 }
 
 @media (prefers-color-scheme: dark) {

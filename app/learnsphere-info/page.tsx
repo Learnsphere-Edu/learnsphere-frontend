@@ -1,9 +1,8 @@
 import Image from 'next/image'
-import InfoBox from '../components/InfoBox'
+import InfoBox from './components/InfoBox'
 import { InfoDetailsCurveLeft, InfoDetailsCurveRight } from '../../constants'
-import InfoBox2 from '../components/InfoBox2'
-import { CustomBtn } from '../components'
-import RouteChange from './RouteBtn'
+import InfoBox2 from './components/InfoBox2'
+import RouteChange from './components/RouteBtn'
 export default function AboutLearnsphere () {
   return (
     <main className='relative bg-[#F8F4FF] w-full min-h-screen overflow-hidden'>

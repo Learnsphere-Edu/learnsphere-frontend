@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import ButtonGrp from '../components/ButtonGroup'
-import NavBtnRouteHandler from '../components/NavButton'
+import ButtonGrp from './ButtonGroup'
+import NavBtnRouteHandler from '../globalcomponents/NavButton'
 
 export default function Onboarding2 () {
   return (

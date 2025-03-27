@@ -1,0 +1,233 @@
+.statistics {
+  padding: 0 5rem 0 5rem;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.statistics h2 {
+  font-size: var(--font-lg);
+  font-weight: bold;
+  padding: 10px 0 10px 0;
+  color: #360099;
+}
+
+.statisticsWrapper {
+  background-color: var(--main-purple);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  overflow-x: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 0 70px 0;
+  border-radius: 10px;
+  scroll-snap-type: x mandatory;
+  white-space: nowrap;
+}
+.statisticsWrapper::-webkit-scrollbar{
+  display: none;
+}
+.statItems {
+  display: flex;
+  gap: 30px;
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+}
+
+@media screen and (max-width:800px) {
+  .statistics {
+    padding: 0 1rem 0 1rem;
+  }
+  
+  .statistics h2 {
+    font-size: var(--font-md);
+  }
+}
+
+
+/* QUESTS */
+.questSection {
+  position: relative;
+  margin-bottom: 1rem;
+  padding: 0 5rem 0 5rem;
+}
+
+.questSection h2 {
+  font-size: var(--font-lg);
+  font-weight: bold;
+  padding: 10px 0 10px 0;
+  color: var(--main-hard);
+}
+
+.heading {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  font-weight: bold;
+  color: var(--main-hard);
+  font-size: var(--font-lg);
+}
+
+.questWrapper {
+  height: 380px;
+  background-color: var(--main-light);
+  padding: 0 1rem 0 1rem;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+}
+
+.questWrapper h2 {
+  font-weight: bold;
+  color: var(--main-hard);
+  font-size: var(--font-lg);
+}
+
+.questWrapper p {
+  margin-top: 5px;
+  max-width: 50%;
+  color: var(--main-hard);
+  font-size: var(--font-sm);
+}
+
+.questItr {
+  display: none;
+}
+
+@media screen and (max-width:800px) {
+  .questSection {
+    padding: 0 1rem 0 1rem;
+  }
+  
+  .questSection h2 {
+    font-size: var(--font-md);
+  }
+  
+  .questWrapper h2 {
+    font-size: var(--font-md);
+  }
+  
+  .questWrapper p {
+    max-width: 90%;
+  }
+}
+
+
+/* PROGRESS TRACK OVERVIEW */
+.progressSection {
+  padding: 0 5rem 2rem 5rem;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.progressWrapper {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  gap: 8px;
+  background-color: var(--background);
+  padding: 0 2rem 0 2rem;
+  border-radius: 8px;
+  width: 100%;
+  height: 330px;
+}
+
+.progressSection h2 {
+  padding: 10px 0 10px 0;
+  font-weight: bold;
+  color: #360099;
+  font-size: var(--font-lg);
+}
+
+.heading_ {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.heading_ span {
+  color: #360099;
+  font-size: var(--font-md);
+}
+
+.questProgress {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  background-color: var(--main-purple);
+  padding: 0 2rem 0 2rem;
+  border-radius: 8px;
+  height: 170px;
+}
+
+.questProgress h2 {
+  font-weight: bold;
+  font-size: var(--font-md);
+  color: white;
+}
+
+.questProgress > div:nth-of-type(1) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: white;
+  padding-bottom: 16px;
+  border-radius: 8px;
+  height: 100px;
+}
+
+.questProgress > div:nth-of-type(1) > span {
+  position: absolute;
+  color: white;
+  z-index: 20;
+}
+
+.progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.progress > div {
+  width: 80%;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message > span:nth-of-type(1) {
+  font-weight: bold;
+  color: #360099;
+  font-size: var(--font-sm);
+}
+
+.message > span:nth-of-type(2) {
+  color: #7C33FF;
+  font-size: var(--font-sm);
+}
+
+@media screen and (max-width:800px) {
+  .progressSection {
+    padding: 0 1rem 0 1rem;
+  }
+  
+  .progressSection h2 {
+    font-size: var(--font-md);
+  }
+  
+  .progressWrapper {
+    padding: 0 1rem 0 1rem;
+  }
+  
+  .message > span {
+    font-size: var(--font-xsm);
+  }
+}
