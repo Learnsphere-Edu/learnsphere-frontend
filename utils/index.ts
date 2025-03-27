@@ -5,11 +5,13 @@
 //   return token && token.trim() !== '' // Check if the token is non-empty
 // }
 
-export const isAuthenticated =() => {
+export const isAuthenticated = () => {
+  if (typeof window !== 'undefined') {
     const token = localStorage.getItem('accessToken')
-    if(token){
-        console.log('User is authenticated')
-        return true
+    if (token) {
+      console.log('User is authenticated')
+      return true
     }
     return false
+  }
 }
