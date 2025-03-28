@@ -1,15 +1,19 @@
 'use client'
 import Image from 'next/image'
 import ChildForm from './components/ChildForm'
-import { isAuthenticated } from '@/utils'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import useAuthStore from '../store/authStore'
 
 export default function ChildInfo () {
   const router = useRouter()
   // if user is not authenticated , redirect to signin
-  if (!isAuthenticated()) {
-    router.push('/signin')
-  }
+  const checkAuth = useAuthStore(state => state.checkAuth)
+  useEffect(() => {
+    if (!checkAuth()) {
+      router.push('/signin') // Redirect if not authenticated
+    }
+  }, [checkAuth, router])
 
   return (
     <div className='z-30 relative bg-white md:bg-[#5B00FF] w-full min-h-screen overflow-hidden'>

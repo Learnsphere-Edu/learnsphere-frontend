@@ -1,26 +1,65 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import CustomBtn from '../globalcomponents/CustomBtn'
 import Link from 'next/link'
 import { FormEvent, useState } from 'react'
-import { useAuth } from '@/hooks/useAuth'
+// import { useAuth } from '@/hooks/useAuth'
 import ErrorBox from '../globalcomponents/ErrorBox'
 import Wazobia from '../globalcomponents/Wazobia'
+import useAuthStore from '../store/authStore'
+import { showInfoToast } from '@/utils/toastUtils'
+import { useRouter } from 'next/navigation'
 
 export default function LoginForm () {
-  const { loading, error, login } = useAuth()
+  const router = useRouter()
+  const [redirect, setRedirect] = useState(false)
+  const error = useAuthStore(state => state.error)
+  const loading = useAuthStore(state => state.loading)
+  const signin = useAuthStore(state => state.signin)
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  })
   const [showPassword, setShowPassword] = useState<boolean>(false)
+
+  // Update formData state on input change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
   const handleLoginAuth = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const loginData = new FormData(e.currentTarget)
-    // get credentials from formData
-    const email = loginData.get('email')?.toString() || ''
-    const password = loginData.get('password')?.toString() || ''
+    useAuthStore.setState({ error: '', message: '' })
+
+    // check if email  and password are empty
+    if (!formData.email || !formData.password) {
+      useAuthStore.setState({ error: 'Field cannot be empty' })
+      showInfoToast('Fields cannot be empty')
+      return
+    }
+
+    // check if password is valid
+    if (formData.password.length < 8) {
+      useAuthStore.setState({ error: 'Password is not Valid' })
+      showInfoToast('Password is not valid!')
+      return
+    }
 
     // send a request to the backend to check if the credentials match / exist
-    await login(email, password)
+    const token = await signin(formData)
+    localStorage.setItem('accTkn', token ?? '')
+    setRedirect(true)
+    console.log(token)
   }
+
+  useEffect(() => {
+    if (redirect) {
+      router.push('/child-info')
+    }
+  }, [redirect, router])
 
   return (
     <div className='relative w-full md:w-[500px] h-[100%] md:h-[470px] form-padding signupform'>
@@ -37,6 +76,8 @@ export default function LoginForm () {
             placeholder='Email'
             className='bg-[#F8F4FF] px-8 signupform-input'
             autoComplete='email'
+            value={formData.email}
+            onChange={handleChange}
           />
         </div>
 
@@ -48,6 +89,8 @@ export default function LoginForm () {
             placeholder='Password'
             className='bg-[#F8F4FF] px-8 signupform-input'
             autoComplete='current-password'
+            value={formData.password}
+            onChange={handleChange}
           />
           <span
             className='top-3 right-3 absolute cursor-pointer'
@@ -82,10 +125,7 @@ export default function LoginForm () {
         <div className='flex flex-col items-end md:items-center'>
           <span className='opacity-50 mt-3 text-[#000] text-[13px] text-center'>
             Don&apos;t have an account?{' '}
-            <Link
-              href='/signup'
-              className='text-[#5B00FF] text-[13px]'
-            >
+            <Link href='/signup' className='text-[#5B00FF] text-[13px]'>
               Sign up
             </Link>
           </span>

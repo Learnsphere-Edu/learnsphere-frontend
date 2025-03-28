@@ -11,8 +11,11 @@ export interface UserDataProps {
   email: string
   username: string
   password: string
-  password2: string
-  // date_of_birth?: string
-  // country?: string
-  // native_language?: string
+  password_confirm: string
+  date_of_birth: string
+  country: string
+  first_name: string
+  last_name: string
+  phone_number: string
+  state: string
 }

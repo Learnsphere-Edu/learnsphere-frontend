@@ -8,17 +8,27 @@ import { useRouter } from 'next/navigation'
 import { showInfoToast } from '@/utils/toastUtils'
 import { UserDataProps } from '@/types'
 import Wazobia from '../globalcomponents/Wazobia'
+import useAuthStore from '../store/authStore'
 
 export default function SignUpForm () {
-  const [error, setError] = useState<string>('')
-  const [loading, setLoading] = useState<boolean>(false)
+  const signup = useAuthStore((state) => state.signup)
+  const {error, message} = useAuthStore()
+  const loading = useAuthStore((state) => state.loading)
   const [showPassword, setShowPassword] = useState<boolean>(false)
+  // these details are for the gurardian registering for the child
   const [formData, setFormData] = useState<UserDataProps>({
     email: '',
     username: '',
     password: '',
-    password2: ''
+    password_confirm: '',
+    date_of_birth: '2003-05-18',
+    country: 'NG',
+    last_name:'Omotosho',
+    first_name: 'Peter',
+    phone_number: '08026526970',
+    state: 'Ibadan'    
   })
+
   const router = useRouter()
 
   // Update formData state on input change
@@ -26,21 +36,18 @@ export default function SignUpForm () {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
-
   // Simple email validation using regex
   const validateEmail = (email: string): boolean => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
     return regex.test(email)
   }
-
   // Check if two password fields match
-  const isPasswordMatch = (password: string, password2: string): boolean =>
-    password === password2
+  const isPasswordMatch = (password: string, password_confirm: string): boolean =>
+    password === password_confirm
 
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setLoading(true)
-    setError('')
+    useAuthStore.setState({error: ''})
 
     const errors: string[] = []
 
@@ -51,62 +58,21 @@ export default function SignUpForm () {
     if (formData.password.length < 8) {
       errors.push('Password must be at least 8 characters.')
     }
-    if (!formData.password || !formData.password2) {
+    if (!formData.password || !formData.password_confirm) {
       errors.push('Password fields cannot be empty.')
     }
-    if (!isPasswordMatch(formData.password, formData.password2)) {
+    if (!isPasswordMatch(formData.password, formData.password_confirm)) {
       errors.push('Passwords do not match.')
     }
 
     if (errors.length > 0) {
-      setError(errors.join(' '))
-      setLoading(false)
+      useAuthStore.setState({error: errors.join(' '), loading: false})
       return
     }
 
-    try {
-      const response = await fetch('/api/register/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
-
-      if (!response.ok) {
-        const data = await response.json()
-        // Consolidate backend error messages from different fields
-        const errorMessages: string[] = []
-        if (data.email) {
-          errorMessages.push(...data.email)
-        }
-        if (data.username) {
-          errorMessages.push(...data.username)
-        }
-        if (data.password) {
-          errorMessages.push(...data.password)
-        }
-        if (!errorMessages.length && data.message) {
-          errorMessages.push(data.message)
-        }
-        setError(errorMessages.join(' '))
-        setLoading(false)
-        return
-      }
-
-      // If registration is successful
-      const data = await response.json()
-      console.log('Registration Successful:', data.message)
-      // Redirect to next page (child-info) upon success
-      showInfoToast(data.message)
-      console.log(data)
-      // router.push('/child-info')
-    } catch (err) {
-      console.error('Error:', err)
-      setError('An unknown error occurred, please try again.')
-    } finally {
-      setLoading(false)
-    }
+    const userId = await signup(formData)
+    localStorage.setItem('parentId', userId?? '')
+    console.log(userId)
   }
 
   return (
@@ -116,7 +82,9 @@ export default function SignUpForm () {
         onSubmit={handleSignUp}
       >
         <h2 className='mb-2 font-bold text-center'>Sign Up</h2>
-        <h3 className='md:hidden block mt-3 mb-2 text-sm'>Please enter your details</h3>
+        <h3 className='md:hidden block mt-3 mb-2 text-sm'>
+          Please enter your details
+        </h3>
         <div className='relative mt-4 mb-4 md:mb-3'>
           <input
             type='text'
@@ -168,10 +136,10 @@ export default function SignUpForm () {
         <div className='relative mb-4 md:mb-3'>
           <input
             type={showPassword ? 'text' : 'password'}
-            name='password2'
+            name='password_confirm'
             placeholder='Confirm Password'
             className='bg-[#F8F4FF] signupform-input'
-            value={formData.password2}
+            value={formData.password_confirm}
             onChange={handleChange}
             autoComplete='new-password'
             required
@@ -193,7 +161,7 @@ export default function SignUpForm () {
           title={loading ? 'Signing Up' : 'Sign Up'}
           styles='w-full py-4 text-white font-semibold bg-[#5B00FF] rounded-lg text-[14px] md:text-[18px]'
           type='submit'
-          disabled={loading}
+          disabled={loading ? true : false}
         />
         {error && (
           <span className='opacity-75 text-[14px] text-red-500'>{error}</span>
@@ -202,10 +170,7 @@ export default function SignUpForm () {
         <div className='flex flex-col items-end md:items-center'>
           <span className='opacity-50 mt-1 text-[#000] text-[13px] text-center'>
             Already have an account?{' '}
-            <Link
-              href='/signin'
-              className='text-[#5B00FF] text-[13px]'
-            >
+            <Link href='/signin' className='text-[#5B00FF] text-[13px]'>
               Login
             </Link>
           </span>

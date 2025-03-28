@@ -56,10 +56,8 @@ export const useAuth = () => {
 
       const data = await response.json()
       // store user tokens
-      localStorage.setItem('accessToken', data.tokens.access)
-      localStorage.setItem('refreshToken', data.tokens.refresh)
-      localStorage.setItem('currentUser', data.user.username)
-      // store success message 
+      localStorage.setItem('accessToken', data.access)
+      localStorage.setItem('refreshToken', data.refresh)
       console.log(data.message);
       
       // Redirect after successful login
@@ -68,7 +66,7 @@ export const useAuth = () => {
     } catch (err) {
       console.error('Error', err)
       setError('An error occurred. Please try again.')
-      showInfoToast('An error occurred. Please try again later!')
+      showInfoToast('An error occurred. Please try again!')
     }
     finally{
       setLoading(false)

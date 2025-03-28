@@ -39,7 +39,9 @@ export default function ChildKnowledgeForm () {
         className='bg-white px-8 md:px-16 py-6 w-full h-full'
         onSubmit={handleSubmit}
       >
-        <h2 className='mb-5 md:mb-2 font-bold text-center'>Language Knowledge</h2>
+        <h2 className='mb-5 md:mb-2 font-bold text-center'>
+          Language Knowledge
+        </h2>
         <div className='flex flex-col gap-5 md:gap-3 options'>
           {options.map(option => (
             <CustomBtn
