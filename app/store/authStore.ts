@@ -112,10 +112,11 @@ const useAuthStore = create<AuthState>(set => ({
             break
           case 500:
             errorMessage = 'Internal Server Error'
+            break
           default:
            errorMessage = data.message || 'Something went wrong. Please try again.'
-            break
         }
+        throw new Error (errorMessage)
       }
 
       const data = await response.json()
