@@ -5,14 +5,13 @@ import CustomBtn from '../globalcomponents/CustomBtn'
 import Link from 'next/link'
 import { FormEvent, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { showInfoToast } from '@/utils/toastUtils'
 import { UserDataProps } from '@/types'
 import Wazobia from '../globalcomponents/Wazobia'
 import useAuthStore from '../store/authStore'
 
 export default function SignUpForm () {
   const signup = useAuthStore((state) => state.signup)
-  const {error, message} = useAuthStore()
+  const error = useAuthStore((state)=> state.error)
   const loading = useAuthStore((state) => state.loading)
   const [showPassword, setShowPassword] = useState<boolean>(false)
   // these details are for the gurardian registering for the child

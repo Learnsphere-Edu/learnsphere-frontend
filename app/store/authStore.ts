@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import { UserDataProps } from '@/types'
-import { useRouter } from 'next/navigation'
 
 interface AuthState {
   user: UserDataProps | null
