@@ -4,7 +4,7 @@ import ProgressBar from './ProgressBar'
 
 const QuestProgress = () => {
   const [progress, setProgress] = useState<number>(50)
-  console.log(setProgress)
+  console.log(setProgress, 'escape')
   return (
     <div>
       <ProgressBar progress={progress} />

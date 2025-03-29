@@ -17,6 +17,9 @@ interface AuthState {
     password: string
   }) => Promise<string | null>
   checkAuth: () => boolean
+//   verifyEmail: (formData: {
+//        userEmail
+//   }) => Promise<string | null>
 }
 const useAuthStore = create<AuthState>(set => ({
   user: null,
@@ -27,10 +30,14 @@ const useAuthStore = create<AuthState>(set => ({
   isAuthenticated: false,
 
   setError: message => set({ error: message }),
-  setMessage: message => set({ message }),
+  setMessage: message => set({ message: message }),
 
   signup: async formData => {
-    set({ loading: true, error: null, message: null })
+    set({ 
+       loading: true,
+        error: null,
+         message: null
+        })
 
     try {
       const response = await fetch('/api/register', {
@@ -86,7 +93,10 @@ const useAuthStore = create<AuthState>(set => ({
         errorMessage = error.message
       }
 
-      set({ error: errorMessage, loading: false })
+      set({ 
+       error: errorMessage,
+        loading: false
+        })
       return null
     }
   },
@@ -114,14 +124,16 @@ const useAuthStore = create<AuthState>(set => ({
             errorMessage = 'Internal Server Error'
             break
           default:
-           errorMessage = data.message || 'Something went wrong. Please try again.'
+            errorMessage = 'Something went wrong. Please try again.'
         }
-        throw new Error (errorMessage)
+        throw new Error(errorMessage)
       }
 
       const data = await response.json()
       //      retrieve tokens from backend response
       set({ loading: false, token: data.access })
+      //       store refresh token in local storage
+      localStorage.setItem('refTkn', data.refresh)
       //       come back to check this.
       return data.access ?? null
     } catch (error: unknown) {

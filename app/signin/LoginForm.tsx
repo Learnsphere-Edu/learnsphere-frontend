@@ -52,11 +52,11 @@ export default function LoginForm () {
     const token = await signin(formData)
     localStorage.setItem('accTkn', token ?? '')
     setRedirect(true)
-    console.log(token)
   }
 
   useEffect(() => {
     if (redirect) {
+      showInfoToast('Login Successful')
       router.push('/child-info')
     }
   }, [redirect, router])

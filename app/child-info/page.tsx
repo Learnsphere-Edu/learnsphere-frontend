@@ -12,6 +12,7 @@ export default function ChildInfo () {
   useEffect(() => {
     if (!checkAuth()) {
       router.push('/signin') // Redirect if not authenticated
+      // console.log(checkAuth)
     }
   }, [checkAuth, router])
 

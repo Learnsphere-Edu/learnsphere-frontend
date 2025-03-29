@@ -18,8 +18,8 @@ const showErrorToast = (message: string) => {
 
 const showInfoToast = (message: string) => {
   toast.info(message, {
-    position: 'top-right',
-    autoClose: 2000,
+    position: 'bottom-right',
+    autoClose: 5000,
     hideProgressBar: false,
   })
 }
