@@ -30,36 +30,43 @@ export default function LoginForm () {
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleLoginAuth = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    useAuthStore.setState({ error: '', message: '' })
+const handleLoginAuth = async (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  useAuthStore.setState({ error: '', message: '' });
 
-    // check if email  and password are empty
-    if (!formData.email || !formData.password) {
-      useAuthStore.setState({ error: 'Field cannot be empty' })
-      showInfoToast('Fields cannot be empty')
-      return
-    }
-
-    // check if password is valid
-    if (formData.password.length < 8) {
-      useAuthStore.setState({ error: 'Password is not Valid' })
-      showInfoToast('Password is not valid!')
-      return
-    }
-
-    // send a request to the backend to check if the credentials match / exist
-    const token = await signin(formData)
-    localStorage.setItem('accTkn', token ?? '')
-    token ? setRedirect(true) : ''
+  // Check if email and password are empty
+  if (!formData.email || !formData.password) {
+    useAuthStore.setState({ error: 'Fields cannot be empty' });
+    showInfoToast('Fields cannot be empty');
+    return;
   }
 
-  useEffect(() => {
-    if (redirect) {
-      showInfoToast('Login Successful')
-      router.push('/child-info')
-    }
-  }, [redirect, router])
+  // Check if password is valid
+  if (formData.password.length < 8) {
+    useAuthStore.setState({ error: 'Password is not valid' });
+    showInfoToast('Password is not valid!');
+    return;
+  }
+
+  // Send request to the backend
+  const accessToken = await signin(formData);
+
+  if (accessToken) {
+    // localStorage.setItem('accTkn', token);
+    useAuthStore.setState({token: accessToken})
+    setRedirect(true);
+  } else {
+    showInfoToast('Login failed, please check your credentials');
+  }
+};
+
+useEffect(() => {
+  if (redirect) {
+    showInfoToast('Login Successful');
+    router.push('/child-info');
+  }
+}, [redirect, router]);
+
 
   return (
     <div className='relative w-full md:w-[500px] h-[100%] md:h-[470px] form-padding signupform'>

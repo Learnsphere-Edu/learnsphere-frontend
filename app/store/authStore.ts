@@ -133,7 +133,7 @@ const useAuthStore = create<AuthState>(set => ({
 
       const data = await response.json()
       //      retrieve tokens from backend response
-      set({ loading: false, token: data.access })
+      set({ loading: false})
       //       store refresh token in local storage
       localStorage.setItem('refTkn', data.refresh)
       //       come back to check this.
