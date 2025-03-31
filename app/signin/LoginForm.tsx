@@ -51,7 +51,7 @@ export default function LoginForm () {
     // send a request to the backend to check if the credentials match / exist
     const token = await signin(formData)
     localStorage.setItem('accTkn', token ?? '')
-    setRedirect(true)
+    token ? setRedirect(true) : ''
   }
 
   useEffect(() => {

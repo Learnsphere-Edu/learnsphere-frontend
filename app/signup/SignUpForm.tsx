@@ -10,9 +10,9 @@ import Wazobia from '../globalcomponents/Wazobia'
 import useAuthStore from '../store/authStore'
 
 export default function SignUpForm () {
-  const signup = useAuthStore((state) => state.signup)
-  const error = useAuthStore((state)=> state.error)
-  const loading = useAuthStore((state) => state.loading)
+  const signup = useAuthStore(state => state.signup)
+  const error = useAuthStore(state => state.error)
+  const loading = useAuthStore(state => state.loading)
   const [showPassword, setShowPassword] = useState<boolean>(false)
   // these details are for the gurardian registering for the child
   const [formData, setFormData] = useState<UserDataProps>({
@@ -22,10 +22,10 @@ export default function SignUpForm () {
     password_confirm: '',
     date_of_birth: '2003-05-18',
     country: 'NG',
-    last_name:'Omotosho',
+    last_name: 'Omotosho',
     first_name: 'Peter',
     phone_number: '08026526970',
-    state: 'Ibadan'    
+    state: 'Ibadan'
   })
 
   const router = useRouter()
@@ -35,22 +35,36 @@ export default function SignUpForm () {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
+
   // Simple email validation using regex
   const validateEmail = (email: string): boolean => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
     return regex.test(email)
   }
   // Check if two password fields match
-  const isPasswordMatch = (password: string, password_confirm: string): boolean =>
-    password === password_confirm
+  const isPasswordMatch = (
+    password: string,
+    password_confirm: string
+  ): boolean => password === password_confirm
 
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    useAuthStore.setState({error: ''})
+    useAuthStore.setState({ error: '' })
 
     const errors: string[] = []
 
     // Client-side validations:
+    // Check if the input contains uppercase letters
+    if (/[A-Z]/.test(formData.username)) {
+      useAuthStore.setState({
+        error: 'Input cannot contain uppercase letters.'
+      })
+      return
+    }
+    if (!/[a-zA-Z]/.test(formData.password)) {
+      useAuthStore.setState({error: 'Your password must contain at least a letter'})
+      return
+    }
     if (!validateEmail(formData.email)) {
       errors.push('Invalid Email Address.')
     }
@@ -65,12 +79,12 @@ export default function SignUpForm () {
     }
 
     if (errors.length > 0) {
-      useAuthStore.setState({error: errors.join(' '), loading: false})
+      useAuthStore.setState({ error: errors.join(' '), loading: false })
       return
     }
 
     const userId = await signup(formData)
-    localStorage.setItem('parentId', userId?? '')
+    localStorage.setItem('parentId', userId ?? '')
     console.log(userId)
   }
 

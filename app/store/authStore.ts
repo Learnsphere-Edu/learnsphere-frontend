@@ -17,9 +17,9 @@ interface AuthState {
     password: string
   }) => Promise<string | null>
   checkAuth: () => boolean
-//   verifyEmail: (formData: {
-//        userEmail
-//   }) => Promise<string | null>
+  //   verifyEmail: (formData: {
+  //        userEmail
+  //   }) => Promise<string | null>
 }
 const useAuthStore = create<AuthState>(set => ({
   user: null,
@@ -33,11 +33,11 @@ const useAuthStore = create<AuthState>(set => ({
   setMessage: message => set({ message: message }),
 
   signup: async formData => {
-    set({ 
-       loading: true,
-        error: null,
-         message: null
-        })
+    set({
+      loading: true,
+      error: null,
+      message: null
+    })
 
     try {
       const response = await fetch('/api/register', {
@@ -54,10 +54,11 @@ const useAuthStore = create<AuthState>(set => ({
         switch (response.status) {
           case 400:
             errorMessage =
-              data.message || 'Invalid input. Please check your details.'
-            break
-          case 401:
-            errorMessage = 'Unauthorized. Please log in again.'
+              data.email ||
+              data.email ||
+              data.password_confirm ||
+              data.username ||
+              'Invalid input. Please check your details.'
             break
           case 403:
             errorMessage =
@@ -93,10 +94,10 @@ const useAuthStore = create<AuthState>(set => ({
         errorMessage = error.message
       }
 
-      set({ 
-       error: errorMessage,
+      set({
+        error: errorMessage,
         loading: false
-        })
+      })
       return null
     }
   },
@@ -117,14 +118,15 @@ const useAuthStore = create<AuthState>(set => ({
         const data = await response.json()
         let errorMessage = 'An unknown error occurred!'
         switch (response.status) {
-          case 400:
-            errorMessage = 'Please try again'
+          case 401:
+            errorMessage = data.error || 'Invalid Email or Password'
             break
           case 500:
             errorMessage = 'Internal Server Error'
             break
           default:
-            errorMessage = data.message || 'Something went wrong. Please try again.'
+            errorMessage =
+              data.message || 'Something went wrong. Please try again.'
         }
         throw new Error(errorMessage)
       }
