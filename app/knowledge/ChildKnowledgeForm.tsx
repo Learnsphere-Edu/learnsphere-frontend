@@ -2,11 +2,13 @@
 import { FormEvent, useState } from 'react'
 import CustomBtn from '../globalcomponents/CustomBtn'
 import Image from 'next/image'
-import { redirect } from 'next/navigation'
 import { showInfoToast } from '@/utils/toastUtils'
 import Wazobia from '../globalcomponents/Wazobia'
+import { useProfileStore } from '../store/profileStore'
+import { useRouter } from 'next/navigation'
 
 export default function ChildKnowledgeForm () {
+  const router = useRouter()
   const options = [
     'New to language',
     'Know a little bit',
@@ -18,19 +20,26 @@ export default function ChildKnowledgeForm () {
   const handleClick = (option: string) => [
     setSelectedKnowledgeOption(option) //update selected option
   ]
+  const setProfileData = useProfileStore(state => state.setProfileData)
+  // const loading = useProfileStore(state => state.loading)
+  // const error = useProfileStore(state => state.error)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setProfileData({ loading: true })
     if (selectedKnowledgeOption) {
       // alert(`You selected: ${selectedKnowledgeOption}`)
       showInfoToast(`You selected: ${selectedKnowledgeOption}`)
-
+      // code to collect child-knowledge information
+      // ....
       //   redirect to next form
-      showInfoToast('Thanks for using our service')
-      redirect('/dashboard')
+      setProfileData({ loading: false })
+
+      router.push('/dashboard')
     } else {
       // alert('Please select an option!')
       showInfoToast('Please select an option!')
+      setProfileData({ loading: false })
     }
   }
   return (

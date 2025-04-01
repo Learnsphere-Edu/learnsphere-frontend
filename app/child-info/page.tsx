@@ -6,15 +6,14 @@ import { useEffect } from 'react'
 import useAuthStore from '../store/authStore'
 
 export default function ChildInfo () {
+  const token = useAuthStore(state => state.token)
   const router = useRouter()
   // if user is not authenticated , redirect to signin
-  const checkAuth = useAuthStore(state => state.checkAuth)
   useEffect(() => {
-    if (!checkAuth()) {
-      router.push('/signin') // Redirect if not authenticated
-      // console.log(checkAuth)
+    if (!token) {
+      router.push('/signin')
     }
-  }, [checkAuth, router])
+  }, [router, token])
 
   return (
     <div className='z-30 relative bg-white md:bg-[#5B00FF] w-full min-h-screen overflow-hidden'>

@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import { showInfoToast } from '@/utils/toastUtils'
 import Wazobia from '../globalcomponents/Wazobia'
+import { useProfileStore } from '../store/profileStore'
+
 
 export default function ScheduleForm () {
   const options = [
@@ -18,18 +20,24 @@ export default function ScheduleForm () {
   const handleClick = (option: string) => [
     setSelectedScheduleOption(option) //update selected option
   ]
+  // const loading = useProfileStore(state => state.loading)
+  const setProfileData = useProfileStore(state => state.setProfileData)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setProfileData({ loading: true })
     if (selectedScheduleOption) {
       // alert(`You selected: ${selectedScheduleOption}`)
       showInfoToast(`You selected: ${selectedScheduleOption}`)
-
+      // code to collect preferred learning schedule information
+      // ...
+      setProfileData({ loading: false })
       //   redirect to next form
       redirect('/knowledge')
     } else {
       // alert('Please select an option!')
       showInfoToast('Please select an option!')
+      setProfileData({ loading: false })
     }
   }
   return (
@@ -38,7 +46,9 @@ export default function ScheduleForm () {
         className='bg-white px-8 md:px-16 py-6 w-full h-full'
         onSubmit={handleSubmit}
       >
-        <h2 className='mb-5 md:mb-2 font-bold text-center'>Learning Scheduling</h2>
+        <h2 className='mb-5 md:mb-2 font-bold text-center'>
+          Learning Scheduling
+        </h2>
         <div className='flex flex-col gap-4 md:gap-3 options'>
           {options.map(option => (
             <CustomBtn

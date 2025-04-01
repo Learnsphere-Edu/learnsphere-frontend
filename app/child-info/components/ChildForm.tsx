@@ -3,24 +3,21 @@
 import Image from 'next/image'
 import CustomBtn from '../../globalcomponents/CustomBtn'
 import { redirect } from 'next/navigation'
-import { FormEvent, useState } from 'react'
+import { FormEvent } from 'react'
 import Wazobia from '../../globalcomponents/Wazobia'
+import { useProfileStore } from '@/app/store/profileStore'
 
 export default function ChildForm () {
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
-  // const [data, setData] = useState<string>('')
+  const loading = useProfileStore((state)=> state.loading)
+  const setProfileData = useProfileStore((state) => state.setProfileData)
 
   const handleChildInfoCollection = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setLoading(true)
-    setError('')
-
-    // const childFormData = new FormData(e.currentTarget)
+    setProfileData({loading: true})
+    // code to  collect child-information
+    setProfileData({loading: false})
     redirect('/schedule')
   }
-  console.log(error)
-
   return (
     <div className='relative md:w-[500px] h-[100%] md:h-[470px] signupform'>
       <form

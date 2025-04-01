@@ -7,6 +7,9 @@ interface AuthState {
   loading: boolean
   error: string | null
   message: string | null
+  parentId: number | null
+  isAuthenticated: boolean
+  setToken: (token: string | null) => void // Function to set the token
 
   setError: (message: string | null) => void
   setMessage: (message: string | null) => void
@@ -16,18 +19,27 @@ interface AuthState {
     email: string
     password: string
   }) => Promise<string | null>
-  checkAuth: () => boolean
-  //   verifyEmail: (formData: {
-  //        userEmail
-  //   }) => Promise<string | null>
 }
 const useAuthStore = create<AuthState>(set => ({
   user: null,
-  token: typeof window !== 'undefined' ? localStorage.getItem('accTkn') : null,
   loading: false,
   error: null,
   message: null,
   isAuthenticated: false,
+  parentId: null,
+
+  // Initialize the token from localStorage if available
+  token: typeof window !== 'undefined' ? localStorage.getItem('accTkn') : null,
+
+  // Function to set the token and sync with localStorage
+  setToken: token => {
+    if (token) {
+      localStorage.setItem('accTkn', token) // Store token in localStorage
+    } else {
+      localStorage.removeItem('accTkn') // Remove token from localStorage if null
+    }
+    set({ token }) // Update Zustand state with the token
+  },
 
   setError: message => set({ error: message }),
   setMessage: message => set({ message: message }),
@@ -54,7 +66,6 @@ const useAuthStore = create<AuthState>(set => ({
         switch (response.status) {
           case 400:
             errorMessage =
-              data.email ||
               data.email ||
               data.password_confirm ||
               data.username ||
@@ -84,7 +95,8 @@ const useAuthStore = create<AuthState>(set => ({
 
       set({
         message: 'Signup successful, Kindly check your email to verify',
-        loading: false
+        loading: false,
+        parentId: data.parent_id ? data.parent_id : null
       })
       return data.parent_id ?? null
     } catch (error: unknown) {
@@ -93,7 +105,6 @@ const useAuthStore = create<AuthState>(set => ({
       if (error instanceof Error) {
         errorMessage = error.message
       }
-
       set({
         error: errorMessage,
         loading: false
@@ -133,7 +144,7 @@ const useAuthStore = create<AuthState>(set => ({
 
       const data = await response.json()
       //      retrieve tokens from backend response
-      set({ loading: false})
+      set({ loading: false })
       //       store refresh token in local storage
       localStorage.setItem('refTkn', data.refresh)
       //       come back to check this.
@@ -148,10 +159,6 @@ const useAuthStore = create<AuthState>(set => ({
       set({ error: errorMessage, loading: false })
       return null
     }
-  },
-
-  checkAuth: () => {
-    return Boolean(localStorage.getItem('accTkn'))
   }
 }))
 

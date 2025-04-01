@@ -1,13 +1,24 @@
 'use client'
 import Image from 'next/image'
 import ScheduleForm from './ScheduleForm'
-
+import useAuthStore from '../store/authStore'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function Schedule () {
+  const token = useAuthStore(state => state.token)
+  const router = useRouter()
+  useEffect(() => {
+    if (!token) {
+      router.push('/signin')
+    }
+  }, [token, router])
   return (
     <div className='z-30 relative bg-white md:bg-[#5B00FF] w-full min-h-screen overflow-hidden'>
       {/* content-wrapper */}
-      <h1 className='hidden md:block top-20 z-20 absolute opacity-40 font-potta_one text-[#FFEBD5] text-[260px]'>WAZOBIA</h1>
+      <h1 className='hidden md:block top-20 z-20 absolute opacity-40 font-potta_one text-[#FFEBD5] text-[260px]'>
+        WAZOBIA
+      </h1>
       <div className='z-30 relative md:flex justify-center items-center gap-20 mt-[2rem] h-full'>
         {/* signup image */}
         <div className='hidden md:flex items-center w-[500px]'>

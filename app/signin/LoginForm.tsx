@@ -52,8 +52,7 @@ const handleLoginAuth = async (e: FormEvent<HTMLFormElement>) => {
   const accessToken = await signin(formData);
 
   if (accessToken) {
-    // localStorage.setItem('accTkn', token);
-    useAuthStore.setState({token: accessToken})
+    useAuthStore.getState().setToken(accessToken)
     setRedirect(true);
   } else {
     showInfoToast('Login failed, please check your credentials');
