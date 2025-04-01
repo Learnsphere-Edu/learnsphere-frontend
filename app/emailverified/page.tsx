@@ -1,8 +1,7 @@
-console.log(useProfileStore)
 import Image from 'next/image'
-import LoginForm from './LoginForm'
+import VerifiedPage from './VerifiedPage'
 
-export default function SignIn () {
+export default function EmailVerified () {
   return (
     <div className='z-30 relative bg-white md:bg-[#5B00FF] w-full min-h-screen overflow-hidden'>
       {/* content-wrapper */}
@@ -22,7 +21,7 @@ export default function SignIn () {
         </div>
         {/* signup form details */}
         <div className='h-[80vh]'>
-          <LoginForm />
+          <VerifiedPage />
         </div>
       </div>
 

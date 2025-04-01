@@ -85,6 +85,7 @@ export default function SignUpForm () {
 
     const userId = await signup(formData)
     localStorage.setItem('parentId', userId ?? '')
+    router.push('/verifyemail')
     console.log(userId)
   }
 

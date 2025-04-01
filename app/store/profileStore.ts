@@ -9,6 +9,7 @@ interface ChildProfileState {
   date_of_birth: string
   gender: string
   avatar: string
+  age: string | number
   primary_language: string
   secondary_languages?: string
   daiily_goal_minutes: number | null
@@ -20,7 +21,8 @@ interface ChildProfileState {
   setProfileData: (
     data: Partial<Omit<ChildProfileState, 'setProfileData' | 'resetProfile'>>
   ) => void
-
+  setLoading: (loading: boolean) => void
+  setError: (error: string) => void
   resetProfile: () => void
 }
 
@@ -40,6 +42,7 @@ export const useProfileStore = create<ChildProfileState>(set => ({
   last_activity: '',
   total_points: null,
   streak_days: null,
+  age: '',
 
   setProfileData: data => set(state => ({ ...state, ...data })),
 
@@ -49,6 +52,7 @@ export const useProfileStore = create<ChildProfileState>(set => ({
       first_name: '',
       last_name: '',
       date_of_birth: '',
+      age: '',
       gender: '',
       avatar: '',
       primary_language: '',
@@ -58,5 +62,8 @@ export const useProfileStore = create<ChildProfileState>(set => ({
       last_activity: '',
       total_points: null,
       streak_days: null
-    })
+    }),
+
+    setLoading: (loading) => set({loading}),
+    setError: (error) => set({error})
 }))
