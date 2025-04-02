@@ -22,7 +22,7 @@ export default function RootLayout({
         className={`antialiased`}
       >
         {children}
-        <ToastContainer />
+        <ToastContainer  style={{marginBottom: '30px'}}/>
       </body>
     </html>
   );
