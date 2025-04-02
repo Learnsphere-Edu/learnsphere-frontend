@@ -1,8 +1,6 @@
 'use client'
-import { useProfileStore } from '@/app/store/profileStore'
 import CustomBtn from '../../globalcomponents/CustomBtn'
 import { FormEvent, useState } from 'react'
-import { showInfoToast } from '@/utils/toastUtils'
 
 export default function ChildProfileFormSection () {
   const [profile, setProfile] = useState({
@@ -15,36 +13,9 @@ export default function ChildProfileFormSection () {
     residentialAddress: ''
   })
   
-  const { setProfileData, loading, error, setLoading, setError } = useProfileStore(state => ({
-    setProfileData: state.setProfileData,
-    loading: state.loading,
-    error: state.error,
-    setLoading: state.setLoading,
-    setError: state.setError
-  }))
-  
   const handleSubmitForm = async (e: FormEvent<HTMLFormElement>) => {
-    // e.preventDefault()
-    // setLoading(true)
-    // setError('')
-    // try {
-    //    setProfileData({
-    //     first_name: profile.firstName,
-    //     last_name: profile.lastName,
-    //     gender: profile.gender,
-    //     age: profile.age,
-    //     primary_language: profile.primaryLanguage,
-    //     preferred_learning_time: profile.languageLevel,
-    //     last_activity: profile.residentialAddress
-    //   })
-  
-    //   showInfoToast('Saved!')
-    // } catch (err) {
-    //   setError('Failed to save profile')
-    //   showInfoToast('Failed to save profile')
-    // } finally {
-    //   setLoading(false)
-    // }
+    e.preventDefault()
+
   }
   
   return (
@@ -178,7 +149,7 @@ export default function ChildProfileFormSection () {
 
       <div className='flex flex-col justify-center items-center'>
         <CustomBtn
-          title={loading ? 'Saving your profile' : 'Save'}
+          title={'Save'}
           styles='bg-[#5B00FF] text-white font-bold rounded-lg w-full md:w-[80%] py-3 disabled:opacity-50'
           type='submit'
           event={() => handleSubmitForm}

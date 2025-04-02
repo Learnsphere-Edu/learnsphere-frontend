@@ -12,7 +12,7 @@ interface ChildProfileState {
   age: string | number
   primary_language: string
   secondary_languages?: string
-  daiily_goal_minutes: number | null
+  daiily_goal_minutes: string
   preferred_learning_time?: string
   last_activity?: string
   total_points?: number | null
@@ -37,7 +37,7 @@ export const useProfileStore = create<ChildProfileState>(set => ({
   avatar: '',
   primary_language: '',
   secondary_languages: '',
-  daiily_goal_minutes: null,
+  daiily_goal_minutes: '',
   preferred_learning_time: '',
   last_activity: '',
   total_points: null,
@@ -57,7 +57,7 @@ export const useProfileStore = create<ChildProfileState>(set => ({
       avatar: '',
       primary_language: '',
       secondary_languages: '',
-      daiily_goal_minutes: null,
+      daiily_goal_minutes: '',
       preferred_learning_time: '',
       last_activity: '',
       total_points: null,

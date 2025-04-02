@@ -2,13 +2,18 @@
 import { FormEvent, useState } from 'react'
 import CustomBtn from '../globalcomponents/CustomBtn'
 import Image from 'next/image'
-import { redirect } from 'next/navigation'
 import { showInfoToast } from '@/utils/toastUtils'
 import Wazobia from '../globalcomponents/Wazobia'
 import { useProfileStore } from '../store/profileStore'
-
+import { useRouter } from 'next/navigation'
 
 export default function ScheduleForm () {
+  // const loading = useProfileStore(state => state.loading)
+  const setProfileData = useProfileStore(state => state.setProfileData)
+  const loading = useProfileStore(state => state.loading)
+  const setLoading = useProfileStore(state => state.setLoading)
+  const setError = useProfileStore(state => state.setError)
+  const router = useRouter()
   const options = [
     '5 - 10 minutes a day',
     '10 - 20 minutes a day',
@@ -17,29 +22,30 @@ export default function ScheduleForm () {
   ]
   const [selectedScheduleOption, setSelectedScheduleOption] =
     useState<string>('')
+
   const handleClick = (option: string) => [
     setSelectedScheduleOption(option) //update selected option
   ]
-  // const loading = useProfileStore(state => state.loading)
-  const setProfileData = useProfileStore(state => state.setProfileData)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setProfileData({ loading: true })
+    setLoading(true)
+    setError('')
     if (selectedScheduleOption) {
-      // alert(`You selected: ${selectedScheduleOption}`)
       showInfoToast(`You selected: ${selectedScheduleOption}`)
-      // code to collect preferred learning schedule information
-      // ...
-      setProfileData({ loading: false })
+      setProfileData({
+        daiily_goal_minutes: selectedScheduleOption
+      })
       //   redirect to next form
-      redirect('/knowledge')
+      setLoading(false)
+      console.log(useProfileStore.getState())
+      router.push('/knowledge')
     } else {
-      // alert('Please select an option!')
       showInfoToast('Please select an option!')
-      setProfileData({ loading: false })
+      setLoading(false)
     }
   }
+
   return (
     <div className='relative md:w-[500px] h-[500px] md:h-[470px]'>
       <form
@@ -66,7 +72,7 @@ export default function ScheduleForm () {
         </div>
 
         <CustomBtn
-          title='Proceed'
+          title={loading ? 'Almost There...' : 'Proceed'}
           styles={`w-full bg-[#5B00FF] text-white font-semibold py-3  rounded-lg mt-3`}
         />
         <Wazobia styles='md:hidden opacity-60 mt-6 font-potta_one text-[#f8f4ff] text-[80px] text-center' />

@@ -94,10 +94,11 @@ const useAuthStore = create<AuthState>(set => ({
       }
 
       set({
-        message: 'Signup successful, Kindly check your email to verify',
+        message: data.message ||  'Signup successful, Kindly check your email to verify',
         loading: false,
         parentId: data.parent_id ? data.parent_id : null
       })
+      
       return data.parent_id ?? null
     } catch (error: unknown) {
       let errorMessage = 'An unknown error occurred'

@@ -1,4 +1,3 @@
-console.log(useProfileStore)
 import Image from 'next/image'
 import LoginForm from './LoginForm'
 

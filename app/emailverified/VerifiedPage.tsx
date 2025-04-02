@@ -11,7 +11,7 @@ export default function VerifiedPage () {
         <h2 className='mt-10 mb-2 font-bold text-center'>Verification Complete</h2>
         <p className='text-[16px] md:text-[18px]'>You&apos;re All Set!</p>
         <p className='opacity-50 mt-3 text-[14px] text-black'>
-          You're all set to access your account and enjoy a seamless learning experience.
+          You&apos;re all set to access your account and enjoy a seamless learning experience.
         </p>
 
         <div className='flex flex-col items-center mt-[4rem] md:mt-[2rem]'>

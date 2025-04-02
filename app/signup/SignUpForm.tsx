@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import { UserDataProps } from '@/types'
 import Wazobia from '../globalcomponents/Wazobia'
 import useAuthStore from '../store/authStore'
+import { showInfoToast } from '@/utils/toastUtils'
 
 export default function SignUpForm () {
   const signup = useAuthStore(state => state.signup)
@@ -84,6 +85,7 @@ export default function SignUpForm () {
     }
 
     const userId = await signup(formData)
+    showInfoToast(useAuthStore.getState().message ?? 'Sign Up Successful, Please Verify your email')
     localStorage.setItem('parentId', userId ?? '')
     router.push('/verifyemail')
     console.log(userId)

@@ -9,37 +9,41 @@ import { useRouter } from 'next/navigation'
 
 export default function ChildKnowledgeForm () {
   const router = useRouter()
+  const setProfileData = useProfileStore(state => state.setProfileData)
+  const loading = useProfileStore(state => state.loading)
+  const setLoading = useProfileStore(state => state.setLoading)
+  const setError = useProfileStore(state => state.setError)
+
   const options = [
     'New to language',
     'Know a little bit',
     'Can make simple sentences',
     'Can converse properly'
   ]
+
   const [selectedKnowledgeOption, setSelectedKnowledgeOption] =
     useState<string>('')
+
   const handleClick = (option: string) => [
     setSelectedKnowledgeOption(option) //update selected option
   ]
-  const setProfileData = useProfileStore(state => state.setProfileData)
-  // const loading = useProfileStore(state => state.loading)
-  // const error = useProfileStore(state => state.error)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setProfileData({ loading: true })
+    setLoading(true)
+    setError('')
     if (selectedKnowledgeOption) {
-      // alert(`You selected: ${selectedKnowledgeOption}`)
       showInfoToast(`You selected: ${selectedKnowledgeOption}`)
-      // code to collect child-knowledge information
-      // ....
+      setProfileData({
+        secondary_languages: selectedKnowledgeOption
+      })
+      console.log(useProfileStore.getState())
       //   redirect to next form
-      setProfileData({ loading: false })
-
+      setLoading(false)
       router.push('/dashboard')
     } else {
-      // alert('Please select an option!')
       showInfoToast('Please select an option!')
-      setProfileData({ loading: false })
+      setLoading(false)
     }
   }
   return (
@@ -53,22 +57,23 @@ export default function ChildKnowledgeForm () {
         </h2>
         <div className='flex flex-col gap-5 md:gap-3 options'>
           {options.map(option => (
-            <CustomBtn
-              key={option}
-              title={option}
-              type='button'
-              styles={`${
-                selectedKnowledgeOption === option
-                  ? 'bg-[#5B00FF]  text-white'
-                  : 'bg-[#F8F4FF]'
-              } w-full text-[#09001A] border border-[#9C66FF] rounded-lg font-poppins font-normal text-left py-3 px-6`}
-              event={() => handleClick(option)}
-            />
+            <div onChange={() => handleClick(option)} key={option}>
+              <CustomBtn
+                title={option}
+                type='button'
+                styles={`${
+                  selectedKnowledgeOption === option
+                    ? 'bg-[#5B00FF]  text-white'
+                    : 'bg-[#F8F4FF]'
+                } w-full text-[#09001A] border border-[#9C66FF] rounded-lg font-poppins font-normal text-left py-3 px-6`}
+                event={() => handleClick(option)}
+              />
+            </div>
           ))}
         </div>
 
         <CustomBtn
-          title='Proceed'
+          title={loading ? 'Almost There. . .' : 'Proceed'}
           styles={`w-full bg-[#5B00FF] text-white font-semibold py-3 rounded-lg mt-8`}
         />
 

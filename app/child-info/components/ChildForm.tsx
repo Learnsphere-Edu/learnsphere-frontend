@@ -1,11 +1,11 @@
 'use client'
 import Image from 'next/image'
 import CustomBtn from '../../globalcomponents/CustomBtn'
-import { redirect } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 import Wazobia from '../../globalcomponents/Wazobia'
 import { useProfileStore } from '@/app/store/profileStore'
 import { showInfoToast } from '@/utils/toastUtils'
+import { useRouter } from 'next/navigation'
 
 export default function ChildForm () {
   const [personalInfo, setPersonalInfo] = useState({
@@ -16,9 +16,10 @@ export default function ChildForm () {
   console.log(personalInfo)
   const setProfileData = useProfileStore(state => state.setProfileData)
   const loading = useProfileStore(state => state.loading)
-  const error = useProfileStore(state => state.error)
+  // const error = useProfileStore(state => state.error)
   const setLoading = useProfileStore(state => state.setLoading)
   const setError = useProfileStore(state => state.setError)
+  const router = useRouter()
 
   const handleChildInfoCollection = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -33,7 +34,7 @@ export default function ChildForm () {
     setLoading(false)
     showInfoToast('Saved!')
     console.log(useProfileStore.getState())
-    redirect('/schedule')
+    router.push('/schedule')
     // code to  collect child-information
   }
 
