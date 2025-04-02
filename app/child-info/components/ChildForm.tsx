@@ -6,6 +6,7 @@ import Wazobia from '../../globalcomponents/Wazobia'
 import { useProfileStore } from '@/app/store/profileStore'
 import { showInfoToast } from '@/utils/toastUtils'
 import { useRouter } from 'next/navigation'
+import PrevFormNav from '@/app/globalcomponents/PreviousFormNav'
 
 export default function ChildForm () {
   const [personalInfo, setPersonalInfo] = useState({
@@ -21,7 +22,7 @@ export default function ChildForm () {
   const setError = useProfileStore(state => state.setError)
   const router = useRouter()
 
-  const handleChildInfoCollection = (e: FormEvent<HTMLFormElement>) => {
+  const handleChildInfoCollection = (e: FormEvent<HTMLFormElement>) :void => {
     e.preventDefault()
     setError('')
     setLoading(true)
@@ -44,6 +45,7 @@ export default function ChildForm () {
         className='bg-white px-8 md:px-16 py-6 w-full h-full'
         onSubmit={handleChildInfoCollection}
       >
+        <PrevFormNav routeTo='/signin'/>
         <h2 className='mb-5 font-bold text-center'>Child&apos;s Information</h2>
         <div className='relative mb-3'>
           <input

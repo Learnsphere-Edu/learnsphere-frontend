@@ -4,6 +4,7 @@ import ChildKnowledgeForm from './ChildKnowledgeForm'
 import useAuthStore from '../store/authStore'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import PrevFormNav from '../globalcomponents/PreviousFormNav'
 
 export default function Schedule () {
   const token = useAuthStore(state => state.token)
@@ -19,6 +20,9 @@ export default function Schedule () {
       <h1 className='hidden md:block top-20 z-20 absolute opacity-40 font-potta_one text-[#FFEBD5] text-[260px]'>
         WAZOBIA
       </h1>
+      <div className='hidden md:block'>
+        <PrevFormNav routeTo='/schedule' />
+      </div>
       <div className='z-30 relative md:flex justify-center items-center gap-20 mt-[2rem] h-full'>
         {/* signup image */}
         <div className='hidden md:flex items-center w-[500px]'>

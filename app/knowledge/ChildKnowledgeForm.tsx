@@ -6,6 +6,7 @@ import { showInfoToast } from '@/utils/toastUtils'
 import Wazobia from '../globalcomponents/Wazobia'
 import { useProfileStore } from '../store/profileStore'
 import { useRouter } from 'next/navigation'
+import PrevFormNav from '../globalcomponents/PreviousFormNav'
 
 export default function ChildKnowledgeForm () {
   const router = useRouter()
@@ -52,6 +53,7 @@ export default function ChildKnowledgeForm () {
         className='bg-white px-8 md:px-16 py-6 w-full h-full'
         onSubmit={handleSubmit}
       >
+        <PrevFormNav routeTo='/schedule' />
         <h2 className='mb-5 md:mb-2 font-bold text-center'>
           Language Knowledge
         </h2>

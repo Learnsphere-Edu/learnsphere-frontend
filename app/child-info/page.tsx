@@ -4,6 +4,7 @@ import ChildForm from './components/ChildForm'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import useAuthStore from '../store/authStore'
+import PrevFormNav from '../globalcomponents/PreviousFormNav'
 
 export default function ChildInfo () {
   const token = useAuthStore(state => state.token)
@@ -21,6 +22,9 @@ export default function ChildInfo () {
       <h1 className='hidden md:block top-20 z-20 absolute opacity-40 font-potta_one text-[#FFEBD5] text-[260px]'>
         WAZOBIA
       </h1>
+      <div className='hidden md:block'>
+        <PrevFormNav routeTo='/signin' />
+      </div>
       <div className='z-30 relative md:flex justify-center items-center gap-20 mt-[2rem] h-full'>
         {/* signin image */}
         <div className='hidden md:flex items-center w-[500px]'>
