@@ -14,8 +14,8 @@ import { useRouter } from 'next/navigation'
 export default function LoginForm () {
   const router = useRouter()
   const [redirect, setRedirect] = useState(false)
-  const error = useAuthStore(state => state.error)
-  const loading = useAuthStore(state => state.loading)
+  const [loading,setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
   const signin = useAuthStore(state => state.signin)
   const isEmailVerified = useAuthStore((state) => state.isEmailVerified)
 
@@ -55,7 +55,9 @@ const handleLoginAuth = async (e: FormEvent<HTMLFormElement>) => {
     return;
   }
 
-  // Send request to the backend
+  setLoading(true)
+  try {
+    // Send request to the backend
   const accessToken = await signin(formData);
 
   if (accessToken) {
@@ -63,6 +65,15 @@ const handleLoginAuth = async (e: FormEvent<HTMLFormElement>) => {
     setRedirect(true);
   } else {
     showInfoToast('Login failed, please check your credentials');
+  }
+  } catch (err) {
+    const message =
+    err instanceof Error ? err.message : 'Signup failed. Please try again.'
+  setError(message)
+  showInfoToast(message)
+  }
+  finally{
+    setLoading(false)
   }
 };
 

@@ -6,7 +6,7 @@ interface AuthState {
   token: string | null
   parentId: number | null
   isEmailVerified: boolean
-
+  userEmail: string | null
   loading: boolean
   error: string | null
   message: string | null
@@ -24,7 +24,7 @@ const useAuthStore = create<AuthState>(set => ({
   user: null,
   isEmailVerified: false,
   parentId: null,
-
+  userEmail: null,
   loading: false,
   error: null,
   message: null,
@@ -48,84 +48,55 @@ const useAuthStore = create<AuthState>(set => ({
   // signup logic
   // signup logic
   signup: async formData => {
-    set({
-      loading: true,
-      error: null,
-      message: null
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
     })
 
-    try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
+    const data = await response.json()
 
-      const data = await response.json()
-
-      if (!response.ok) {
-        let errorMessage = 'An unknown error occurred'
-
-        switch (response.status) {
-          case 400:
-            errorMessage =
-              data.email ||
-              data.password_confirm ||
-              data.username ||
-              'Invalid input. Please check your details.'
-            break
-          case 403:
-            errorMessage =
-              'Forbidden. You do not have permission to perform this action.'
-            break
-          case 404:
-            errorMessage = 'Resource not found. Please try again later.'
-            break
-          case 409:
-            errorMessage =
-              data.message || 'User already exists. Try logging in instead.'
-            break
-          case 500:
-            errorMessage = 'Internal server error. Please try again later.'
-            break
-          default:
-            errorMessage =
-              data.message || 'Something went wrong. Please try again.'
-        }
-
-        // Throwing error message for the switch block
-        throw new Error(errorMessage)
-      }
-
-      // Handling successful signup
-      set({
-        message:
-          data.message ||
-          'Signup successful, Kindly check your email to verify',
-        loading: false,
-        parentId: data.parent_id ?? null // Ensuring it's null if not present
-      })
-
-      return data.parent_id ?? null // Returning parent_id if available
-    } catch (error: unknown) {
-      // Default error message in case error type is not handled
+    if (!response.ok) {
       let errorMessage = 'An unknown error occurred'
 
-      if (error instanceof Error) {
-        errorMessage = error.message
+      switch (response.status) {
+        case 400:
+          errorMessage =
+            data.email ||
+            data.password_confirm ||
+            data.username ||
+            'Invalid input'
+          break
+        case 403:
+          errorMessage = 'Forbidden'
+          break
+        case 404:
+          errorMessage = 'Not found'
+          break
+        case 409:
+          errorMessage = data.message || 'User already exists'
+          break
+        case 500:
+          errorMessage = 'Server error'
+          break
+        default:
+          errorMessage = data.message || 'Something went wrong'
       }
 
-      // Setting error state
-      set({
-        error: errorMessage,
-        loading: false
-      })
-      return null
+      throw new Error(errorMessage)
     }
+
+    set({
+      message: data.message || 'Signup successful',
+      parentId: data.parent_id ?? null
+    })
+
+    return data.parent_id ?? null
   },
+
   // signin logic
   signin: async formData => {
-    set({ loading: true, error: null, message: null })
+    set({ message: null })
 
     try {
       const response = await fetch('api/login', {
@@ -155,19 +126,14 @@ const useAuthStore = create<AuthState>(set => ({
 
       const data = await response.json()
       //      retrieve tokens from backend response
-      set({ loading: false })
-      //       store refresh token in local storage
       localStorage.setItem('refTkn', data.refresh)
-      //       come back to check this.
       return data.access ?? null
     } catch (error: unknown) {
       let errorMessage = 'An unknown error occurred'
-
       if (error instanceof Error) {
         errorMessage = error.message
+        throw new Error(errorMessage)
       }
-
-      set({ error: errorMessage, loading: false })
       return null
     }
   }

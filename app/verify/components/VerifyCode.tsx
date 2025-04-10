@@ -44,7 +44,6 @@ const VerifyCode = () => {
           onChange={(e) => handleChange(index, e.target.value)}
           onKeyDown={(e) => handleKeyDown(index, e)}
           ref={(el) => {
-            // This is the key fix: Don't return anything, just assign
             inputsRef.current[index] = el;
           }}
           className="code-input"

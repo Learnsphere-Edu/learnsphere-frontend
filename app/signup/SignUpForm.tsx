@@ -12,8 +12,8 @@ import { showInfoToast } from '@/utils/toastUtils'
 
 export default function SignUpForm () {
   const signup = useAuthStore(state => state.signup)
-  const error = useAuthStore(state => state.error)
-  const loading = useAuthStore(state => state.loading)
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState<boolean>(false)
   const [showPassword, setShowPassword] = useState<boolean>(false)
   // these details are for the gurardian registering for the child
   const [formData, setFormData] = useState<UserDataProps>({
@@ -45,55 +45,53 @@ export default function SignUpForm () {
   // handle signup logic
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    useAuthStore.setState({ error: '' })
-
-    const errors: string[] = []
+    setError(null)
 
     // Client-side validations:
     // Check if the input contains uppercase letters
     if (/[A-Z]/.test(formData.username)) {
-      useAuthStore.setState({
-        error: 'Input cannot contain uppercase letters.'
-      })
+      setError('Input cannot contain uppercase letters.')
       return
     }
     if (!/[a-zA-Z]/.test(formData.password)) {
-      useAuthStore.setState({
-        error: 'Your password must contain at least a letter'
-      })
+      setError('Your password must contain at least a letter')
       return
     }
     if (!validateEmail(formData.email)) {
-      errors.push('Invalid Email Address.')
+      setError('Invalid Email Address.')
+      return
     }
     if (formData.password.length < 8) {
-      errors.push('Password must be at least 8 characters.')
+      setError('Password must be at least 8 characters.')
+      return
     }
     if (!formData.password || !formData.password_confirm) {
-      errors.push('Password fields cannot be empty.')
+      setError('Password fields cannot be empty.')
+      return
     }
     if (!isPasswordMatch(formData.password, formData.password_confirm)) {
-      errors.push('Passwords do not match.')
-    }
-
-    if (errors.length > 0) {
-      useAuthStore.setState({ error: errors.join(' '), loading: false })
+      setError('Passwords does not match')
       return
     }
 
+    setLoading(true)
     // receive response from backend
-    const parentId = await signup(formData)
-    if (parentId) {
-      showInfoToast(
-        useAuthStore.getState().message ??
-          'Sign Up Successful, Please Verify your email'
-      )
-      localStorage.setItem('parentId', parentId ?? '')
-      // navigate to email verification
-      router.push('/verifyemail')
+    try {
+      const parentId = await signup(formData)
+      if (parentId) {
+        showInfoToast('Signup successful! Check your email to verify.')
+        localStorage.setItem('parentId', parentId)
+        useAuthStore.setState({userEmail: formData.email})
+        router.push('/verifyemail')
+      }
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : 'Signup failed. Please try again.'
+      setError(message)
+      showInfoToast(message)
+    } finally {
+      setLoading(false)
     }
-    // display error to parent
-    showInfoToast(useAuthStore.getState().error ?? '')
   }
 
   return (
