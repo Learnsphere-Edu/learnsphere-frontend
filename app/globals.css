@@ -13,12 +13,17 @@
   --main-light: #FFF4E5;
   --main-soft: #FC9E48;
   --main-hard: #FF7A00;
+  --black-800: #1A1A1A;
+  --purple-dark: #120033;
+  --main-light: #FFF4E5;
 
   /* font sizes */
+  --font-txsm: 12px;
   --font-xsm: 14px;
   --font-sm: 16px;
   --font-md: 20px;
   --font-lg: 23px;
+  --font-xlg: 25px;
   --font-xl: 35px;
 }
 

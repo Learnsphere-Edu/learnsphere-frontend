@@ -3,7 +3,6 @@ import { create } from 'zustand'
 interface ChildProfileState {
   loading: boolean
   error: string | null
-  parent: number | null
   first_name: string
   last_name: string
   date_of_birth: string
@@ -29,7 +28,6 @@ interface ChildProfileState {
 export const useProfileStore = create<ChildProfileState>(set => ({
   loading: false,
   error: null,
-  parent: null,
   first_name: '',
   last_name: '',
   date_of_birth: '',
@@ -48,7 +46,6 @@ export const useProfileStore = create<ChildProfileState>(set => ({
 
   resetProfile: () =>
     set({
-      parent: null,
       first_name: '',
       last_name: '',
       date_of_birth: '',

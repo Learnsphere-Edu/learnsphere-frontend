@@ -20,13 +20,7 @@ export default function SignUpForm () {
     email: '',
     username: '',
     password: '',
-    password_confirm: '',
-    date_of_birth: '2003-05-18',
-    country: 'NG',
-    last_name: 'Omotosho',
-    first_name: 'Peter',
-    phone_number: '08026526970',
-    state: 'Ibadan'
+    password_confirm: ''
   })
 
   const router = useRouter()
@@ -48,6 +42,7 @@ export default function SignUpForm () {
     password_confirm: string
   ): boolean => password === password_confirm
 
+  // handle signup logic
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     useAuthStore.setState({ error: '' })
@@ -63,7 +58,9 @@ export default function SignUpForm () {
       return
     }
     if (!/[a-zA-Z]/.test(formData.password)) {
-      useAuthStore.setState({error: 'Your password must contain at least a letter'})
+      useAuthStore.setState({
+        error: 'Your password must contain at least a letter'
+      })
       return
     }
     if (!validateEmail(formData.email)) {
@@ -84,11 +81,19 @@ export default function SignUpForm () {
       return
     }
 
-    const userId = await signup(formData)
-    showInfoToast(useAuthStore.getState().message ?? 'Sign Up Successful, Please Verify your email')
-    localStorage.setItem('parentId', userId ?? '')
-    router.push('/verifyemail')
-    console.log(userId)
+    // receive response from backend
+    const parentId = await signup(formData)
+    if (parentId) {
+      showInfoToast(
+        useAuthStore.getState().message ??
+          'Sign Up Successful, Please Verify your email'
+      )
+      localStorage.setItem('parentId', parentId ?? '')
+      // navigate to email verification
+      router.push('/verifyemail')
+    }
+    // display error to parent
+    showInfoToast(useAuthStore.getState().error ?? '')
   }
 
   return (
@@ -105,7 +110,7 @@ export default function SignUpForm () {
           <input
             type='text'
             name='username'
-            placeholder='Full name'
+            placeholder='Username: e.g Jane or Jane Doe'
             className='bg-[#F8F4FF] signupform-input'
             value={formData.username}
             onChange={handleChange}

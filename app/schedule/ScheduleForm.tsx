@@ -7,6 +7,7 @@ import Wazobia from '../globalcomponents/Wazobia'
 import { useProfileStore } from '../store/profileStore'
 import { useRouter } from 'next/navigation'
 import PrevFormNav from '../globalcomponents/PreviousFormNav'
+import useAuthStore from '../store/authStore'
 
 export default function ScheduleForm () {
   // const loading = useProfileStore(state => state.loading)
@@ -15,6 +16,18 @@ export default function ScheduleForm () {
   const setLoading = useProfileStore(state => state.setLoading)
   const setError = useProfileStore(state => state.setError)
   const router = useRouter()
+  const resetProfile = useProfileStore(state => state.resetProfile)
+  const fullState = useProfileStore.getState()
+
+  const profileData = {
+    parent: useAuthStore.getState().parentId,
+    first_name: fullState.first_name,
+    last_name: fullState.last_name,
+    age: fullState.age,
+    primary_language: fullState.primary_language,
+    schedule: fullState.daiily_goal_minutes,
+    language_level: fullState.secondary_languages
+  }
   const options = [
     '5 - 10 minutes a day',
     '10 - 20 minutes a day',
@@ -28,19 +41,64 @@ export default function ScheduleForm () {
     setSelectedScheduleOption(option) //update selected option
   ]
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
     setError('')
+
+    // if an option is selected
     if (selectedScheduleOption) {
       showInfoToast(`You selected: ${selectedScheduleOption}`)
       setProfileData({
         daiily_goal_minutes: selectedScheduleOption
       })
-      //   redirect to next form
-      setLoading(false)
-      console.log(useProfileStore.getState())
-      router.push('/knowledge')
+
+      // final submission logic
+      // basic validation
+      if (
+        !profileData.first_name ||
+        !profileData.primary_language ||
+        !profileData.age ||
+        !profileData.language_level ||
+        !profileData.last_name ||
+        !profileData.schedule ||
+        !profileData.parent
+      ) {
+        showInfoToast('Please complete all required profile fields!')
+        setLoading(false)
+        return
+      }
+
+      try {
+        const token = useAuthStore.getState().token
+        const response = await fetch(
+          'https://learnsphere-jjlc.onrender.com/v1/children/',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              ...(token ? { Authorization: `Bearer ${token}` } : {})
+            },
+            body: JSON.stringify(profileData)
+          }
+        )
+
+        if (!response.ok) {
+          showInfoToast('Error while saving profile')
+          return
+        }
+
+        showInfoToast('Profile saved successfully!')
+        // reset after sending to backend
+        resetProfile()
+        setLoading(false)
+        router.push('/dashboard')
+      } catch (error) {
+        console.error(error)
+        setError('An error occurred while saving profile')
+        showInfoToast('An error occurred while saving profile')
+        setLoading(false)
+      }
     } else {
       showInfoToast('Please select an option!')
       setLoading(false)
@@ -53,7 +111,7 @@ export default function ScheduleForm () {
         className='bg-white px-8 md:px-16 py-6 w-full h-full'
         onSubmit={handleSubmit}
       >
-        <PrevFormNav routeTo='/child-info'/>
+        <PrevFormNav routeTo='/child-info' />
         <h2 className='mb-5 md:mb-2 font-bold text-center'>
           Learning Scheduling
         </h2>

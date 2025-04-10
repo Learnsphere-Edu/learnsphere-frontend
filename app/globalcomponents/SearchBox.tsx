@@ -1,7 +1,10 @@
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import Image from 'next/image';
 
-export default function SearchBox() {
+interface Props{
+  placeholder?: string
+}
+export default function SearchBox({placeholder}:Props) {
   return (
     <div className="relative flex justify-center items-center gap-4 w-full">
       <div className="relative w-[80%]">
@@ -9,8 +12,8 @@ export default function SearchBox() {
         <input
           type="text"
           name="search"
-          placeholder="Search"
-          className="bg-[#F6F6F6] px-12 md:px-[3.5rem] py-3 rounded-2xl focus:outline-none w-full"
+          placeholder={`Search ${placeholder}`}
+          className="bg-[#F6F6F6] px-12 md:px-[3.5rem] py-3 rounded-full focus:outline-none w-full"
         />
       </div>
 

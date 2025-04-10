@@ -4,16 +4,16 @@ import { UserDataProps } from '@/types'
 interface AuthState {
   user: UserDataProps | null
   token: string | null
+  parentId: number | null
+  isEmailVerified: boolean
+
   loading: boolean
   error: string | null
   message: string | null
-  parentId: number | null
-  isAuthenticated: boolean
+
   setToken: (token: string | null) => void // Function to set the token
-
-  setError: (message: string | null) => void
+  setError: (error: string | null) => void
   setMessage: (message: string | null) => void
-
   signup: (formData: UserDataProps) => Promise<string | null>
   signin: (formData: {
     email: string
@@ -22,11 +22,12 @@ interface AuthState {
 }
 const useAuthStore = create<AuthState>(set => ({
   user: null,
+  isEmailVerified: false,
+  parentId: null,
+
   loading: false,
   error: null,
   message: null,
-  isAuthenticated: false,
-  parentId: null,
 
   // Initialize the token from localStorage if available
   token: typeof window !== 'undefined' ? localStorage.getItem('accTkn') : null,
@@ -44,6 +45,8 @@ const useAuthStore = create<AuthState>(set => ({
   setError: message => set({ error: message }),
   setMessage: message => set({ message: message }),
 
+  // signup logic
+  // signup logic
   signup: async formData => {
     set({
       loading: true,
@@ -90,22 +93,29 @@ const useAuthStore = create<AuthState>(set => ({
               data.message || 'Something went wrong. Please try again.'
         }
 
+        // Throwing error message for the switch block
         throw new Error(errorMessage)
       }
 
+      // Handling successful signup
       set({
-        message: data.message ||  'Signup successful, Kindly check your email to verify',
+        message:
+          data.message ||
+          'Signup successful, Kindly check your email to verify',
         loading: false,
-        parentId: data.parent_id ? data.parent_id : null
+        parentId: data.parent_id ?? null // Ensuring it's null if not present
       })
-      
-      return data.parent_id ?? null
+
+      return data.parent_id ?? null // Returning parent_id if available
     } catch (error: unknown) {
+      // Default error message in case error type is not handled
       let errorMessage = 'An unknown error occurred'
 
       if (error instanceof Error) {
         errorMessage = error.message
       }
+
+      // Setting error state
       set({
         error: errorMessage,
         loading: false
@@ -113,7 +123,7 @@ const useAuthStore = create<AuthState>(set => ({
       return null
     }
   },
-
+  // signin logic
   signin: async formData => {
     set({ loading: true, error: null, message: null })
 

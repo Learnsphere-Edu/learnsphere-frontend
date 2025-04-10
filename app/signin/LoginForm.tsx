@@ -17,6 +17,7 @@ export default function LoginForm () {
   const error = useAuthStore(state => state.error)
   const loading = useAuthStore(state => state.loading)
   const signin = useAuthStore(state => state.signin)
+  const isEmailVerified = useAuthStore((state) => state.isEmailVerified)
 
   const [formData, setFormData] = useState({
     email: '',
@@ -34,6 +35,12 @@ const handleLoginAuth = async (e: FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   useAuthStore.setState({ error: '', message: '' });
 
+  // check is email is verified
+  if(!isEmailVerified){
+    showInfoToast('Kindly verify your email before login')
+    console.log('Email not verified!')
+    return
+  }
   // Check if email and password are empty
   if (!formData.email || !formData.password) {
     useAuthStore.setState({ error: 'Fields cannot be empty' });

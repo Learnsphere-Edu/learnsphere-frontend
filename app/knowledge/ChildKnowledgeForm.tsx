@@ -3,7 +3,6 @@ import { FormEvent, useState } from 'react'
 import CustomBtn from '../globalcomponents/CustomBtn'
 import Image from 'next/image'
 import { showInfoToast } from '@/utils/toastUtils'
-import Wazobia from '../globalcomponents/Wazobia'
 import { useProfileStore } from '../store/profileStore'
 import { useRouter } from 'next/navigation'
 import PrevFormNav from '../globalcomponents/PreviousFormNav'
@@ -11,9 +10,10 @@ import PrevFormNav from '../globalcomponents/PreviousFormNav'
 export default function ChildKnowledgeForm () {
   const router = useRouter()
   const setProfileData = useProfileStore(state => state.setProfileData)
-  const loading = useProfileStore(state => state.loading)
   const setLoading = useProfileStore(state => state.setLoading)
   const setError = useProfileStore(state => state.setError)
+  const loading = useProfileStore(state => state.loading)
+
 
   const options = [
     'New to language',
@@ -25,27 +25,24 @@ export default function ChildKnowledgeForm () {
   const [selectedKnowledgeOption, setSelectedKnowledgeOption] =
     useState<string>('')
 
-  const handleClick = (option: string) => [
-    setSelectedKnowledgeOption(option) //update selected option
-  ]
+  const handleClick = (option: string) => {
+    setSelectedKnowledgeOption(option)
+  }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
     setError('')
-    if (selectedKnowledgeOption) {
-      showInfoToast(`You selected: ${selectedKnowledgeOption}`)
-      setProfileData({
-        secondary_languages: selectedKnowledgeOption
-      })
-      console.log(useProfileStore.getState())
-      //   redirect to next form
-      setLoading(false)
-      router.push('/dashboard')
-    } else {
+
+    if (!selectedKnowledgeOption) {
       showInfoToast('Please select an option!')
       setLoading(false)
+      return
     }
+    // store knoledge option
+    setProfileData({ secondary_languages: selectedKnowledgeOption })
+    setLoading(false)
+    router.push('/schedule')
   }
   return (
     <div className='relative md:w-[500px] h-[500px] md:h-[470px]'>
@@ -79,7 +76,7 @@ export default function ChildKnowledgeForm () {
           styles={`w-full bg-[#5B00FF] text-white font-semibold py-3 rounded-lg mt-8`}
         />
 
-        <Wazobia styles='md:hidden opacity-60 mt-6 font-potta_one text-[#f8f4ff] text-[80px] text-center' />
+        {/* <Wazobia styles='md:hidden opacity-60 mt-6 font-potta_one text-[#f8f4ff] text-[80px] text-center' /> */}
       </form>
 
       {/* Eclipse images for designs */}

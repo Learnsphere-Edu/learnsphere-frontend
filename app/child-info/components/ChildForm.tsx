@@ -14,7 +14,6 @@ export default function ChildForm () {
     age: '',
     preferredLanguage: ''
   })
-  console.log(personalInfo)
   const setProfileData = useProfileStore(state => state.setProfileData)
   const loading = useProfileStore(state => state.loading)
   // const error = useProfileStore(state => state.error)
@@ -36,7 +35,6 @@ export default function ChildForm () {
     showInfoToast('Saved!')
     console.log(useProfileStore.getState())
     router.push('/schedule')
-    // code to  collect child-information
   }
 
   return (
@@ -72,6 +70,7 @@ export default function ChildForm () {
           />
         </div>
         <div className='relative mb-3'>
+          {/* this is going to be a select option between yoruba, hausa and Igbo */}
           <input
             type='text'
             name='preferredLanguage'
